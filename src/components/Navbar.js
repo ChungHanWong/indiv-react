@@ -14,6 +14,9 @@ class navbar extends React.Component {
   
   handlelogout = () => {
     sessionStorage.removeItem('autoken')
+    sessionStorage.removeItem('email')
+    sessionStorage.removeItem('id')
+    sessionStorage.removeItem('username')
     
   }
 
