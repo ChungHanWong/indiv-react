@@ -1,27 +1,35 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { Route,Switch } from 'react-router-dom'
+import Submit from './containers/submit'
+import Jumbotron from './components/Jumbotron'
+import SignUp from './containers/SignUp'
+import Login from './containers/Login'
+import Gallery from './containers/Gallery'
+import Detail from './containers/Detail'
+import Navbar from './components/Navbar'
+import Profile from './pages/Profile'
 
-class App extends Component {
+
+class App extends React.Component {
+  
+
   render() {
+  
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <>
+      <Jumbotron/>
+      <Navbar/>
+      <Switch>
+        <Route exact path="/Submit" component={Submit} />
+        <Route exact path="/SignUp" component={SignUp} />
+        <Route exact path="/Login" component={Login} />
+        <Route exact path="/Gallery" component={Gallery} />
+        <Route exact path="/detail/:id" component={Detail} />
+        <Route exact path="/Profile" component={Profile} />
+      </Switch>
+      </>
+    )
   }
 }
 
