@@ -10,8 +10,7 @@ class Detail extends React.Component {
         category :"",
         description :"",
         price: "",
-        image:""
-
+        image:"",
     }
 
     componentDidMount()  {
@@ -37,6 +36,10 @@ class Detail extends React.Component {
         .catch(error => {    
             console.log('ERROR: ', error)
         })
+    }
+
+    fileSelectedHandler = event => {
+        this.setState({ picture : event.target.files[0] })
     }
 
     render() {
