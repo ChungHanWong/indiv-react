@@ -19,11 +19,12 @@ class Login extends React.Component {
 		.then(response => {
 		 	console.log(response.data)
 		 	alert(response.data.username)
-		//  	this.setState({currentUser: response.data.user})
 		 	    sessionStorage.setItem('autoken', response.data.access_token)
 		 	    sessionStorage.setItem('id', response.data.id)
                 sessionStorage.setItem('username', response.data.username)
                 sessionStorage.setItem('email', response.data.email)
+                sessionStorage.setItem('profilepic', response.data.profilepic)
+                sessionStorage.setItem('bio', response.data.bio)
 		//  	sessionStorage.setItem('currentUserPic', `http://next-curriculum-instagram.s3.amazonaws.com/${response.data.user.profile_picture}`)
 		})
 		.catch(error => {

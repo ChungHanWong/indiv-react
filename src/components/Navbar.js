@@ -17,6 +17,8 @@ class navbar extends React.Component {
     sessionStorage.removeItem('email')
     sessionStorage.removeItem('id')
     sessionStorage.removeItem('username')
+    sessionStorage.removeItem('bio')
+    sessionStorage.removeItem('profilepic')
     
   }
 

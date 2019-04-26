@@ -1,20 +1,25 @@
 import React from 'react';
 import axios from 'axios';
+import { Media,Button } from 'reactstrap';
 
 
 class Profile extends React.Component {
     state = {
         username:'',
-        email:'',
+        profilepic:'',
+        bio : '',
+
     }
     componentDidMount() {
         axios.get('http://localhost:5000/profile/', 
             { headers: { Authorization: `Bearer ${sessionStorage.getItem('autoken')}` } })
             .then(response => {
-                alert(response.data)
-                console.log(response.data)
-                // this.setState({images:response.data})
-                // this.setState({isLoading:false})
+                
+                console.log(response.data.logged_in_as.username)
+                this.setState({username:response.data.logged_in_as.username})
+                this.setState({bio:response.data.logged_in_as.bio})
+                this.setState({profilepic:response.data.logged_in_as.profilepic})
+                
                 //this.setState({currentUser: this.props.currentUser})
             })
     }
@@ -24,20 +29,18 @@ class Profile extends React.Component {
         return(
             <>
                 <h1>Profile Page</h1>
-                {/* <Media>
+                <Media>
                 <Media left href="#">
-                    <Media className="mediaimg" src = "" alt="Generic placeholder image" />
+                    <Media className="mediaimg" src = {this.state.profilepic} alt="Generic placeholder image" />
                 </Media>
                 <Media body>
                     <Media heading className="mediaheading">
-                    {this.state.name}
+                    {this.state.username}
                     </Media>
-                    <p className = "details">{this.state.description}</p>
-                    <div>
-                    <p className = "details">Price :{this.state.price}</p>
-                    </div>
+                    <p className = "details">{this.state.bio}</p>
+                   
                     </Media>
-            </Media> */}
+            </Media>
             </>
         )
     }
