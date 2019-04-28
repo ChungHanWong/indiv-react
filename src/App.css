@@ -44,7 +44,7 @@
 
 .details{
   font-size :30px;
-  margin:15px;
+  margin:55px;
   text-align : center;
 }
 
@@ -64,6 +64,17 @@
 h1 {
   text-align: center;
   margin-top: 40px;
+  font-size : 60px;
 }
+
+/* Homepage */
+.carouselimg{
+  width: 1700px;
+  height : 800px;
+  padding : 80px;
+  
+ 
+}
+
 
 

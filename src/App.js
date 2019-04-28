@@ -7,8 +7,9 @@ import SignUp from './containers/SignUp'
 import Login from './containers/Login'
 import Gallery from './containers/Gallery'
 import Detail from './containers/Detail'
-import Navbar from './components/Navbar'
+import Navbar from './containers/Navbar'
 import Profile from './pages/Profile'
+import Carousel from './containers/Carousel'
 
 
 class App extends React.Component {
@@ -20,6 +21,8 @@ class App extends React.Component {
       <>
       <Jumbotron/>
       <Navbar/>
+      <h1>Welcome to Artsy Fartsy</h1>
+      <Carousel/>
       <Switch>
         <Route exact path="/Submit" component={Submit} />
         <Route exact path="/SignUp" component={SignUp} />
