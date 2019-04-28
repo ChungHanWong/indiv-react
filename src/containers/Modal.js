@@ -25,18 +25,21 @@ class ModalExample extends React.Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Edit Bio</ModalHeader>
           <ModalBody>
-          <FormGroup>
-            <Label for="name">Bio</Label>
-            <Input
-                type="text"
-                name="bio"
-                placeholder="Blah Blah Blah"
-                
-            />
-        </FormGroup>
+          <Form onSubmit={this.props.handleSubmitBio}>
+            <FormGroup>
+                <Label for="name">Bio</Label>
+                <Input
+                    type="text"
+                    name="bio"
+                    placeholder="Blah Blah Blah"
+                    onChange={this.props.editingbio}
+                />
+            </FormGroup>
+            <Button color="primary" type="submit">Submit</Button>
+        </Form>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Submit</Button>{' '}
+            
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>

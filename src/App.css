@@ -67,6 +67,10 @@ h1 {
   font-size : 60px;
 }
 
+.profilemodal{
+  text-align: center;
+}
+
 /* Homepage */
 .carouselimg{
   width: 1700px;
