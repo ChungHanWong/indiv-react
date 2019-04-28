@@ -29,49 +29,55 @@ class Profile extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        let {picture} = this.state;
+        let {picture,username} = this.state;
         let fd = new FormData();
         fd.append('picture', picture )
-        axios.post("http://127.0.0.1:5000/profile/edit/", fd, {headers: {
+        fd.append('username', username)
+        axios.post("http://127.0.0.1:5000/profile/edit", fd, {headers: {
             'Content-Type': 'multipart/form-data'
           }})
         .then(response => {
-            // console.log(response.data)
-            // alert(response.data)
+            console.log(response.data)
+            alert(response.data)
+            this.setState({profilepic : response.data.profilepic})
         })
         .catch(error => {
         alert("error uploading")
         })
         }
 
-        
+
     fileSelectedHandler = event => {
         this.setState({ picture : event.target.files[0] })
     }   
 
 
     render() {
-        console.log(this.state.picture)
+        console.log(this.state.profilepic)
         return(
             <>
                 <h1>Profile Page</h1>
                 <Media>
                 <Media left href="#">
-                    {/* <img src = {nopic} /> */}
+                    {this.state.profilepic == ''?
                     <Media className="mediaprofilepic" src = {nopic} alt="Generic placeholder image" />
-                    {/* <Media className="mediaimg" src = {this.state.profilepic} alt="Generic placeholder image" /> */}
-                <Form onSubmit={this.handleSubmit}>
-                    <div>
-                        <input type="file" onChange = {this.fileSelectedHandler} />
-                    </div>
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
-                </Form>
+                    :
+                    <Media className="mediaprofilepic" src = {this.state.profilepic} alt="Generic placeholder image" />
+                    }
+                <div className="picSubmit">
+                    <Form onSubmit={this.handleSubmit}>
+                        <div>
+                            <input type="file" onChange = {this.fileSelectedHandler} />
+                        </div>
+                        <Button variant="primary" type="submit">
+                            Submit
+                        </Button>
+                    </Form>
+                </div>
                 </Media>
                 <Media body>
                     <Media heading className="mediaheading">
-                    {this.state.username}
+                    <h1>{this.state.username}</h1>
                     </Media>
                     <p className = "details">{this.state.bio}</p>
                    

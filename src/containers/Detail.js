@@ -38,9 +38,7 @@ class Detail extends React.Component {
         })
     }
 
-    fileSelectedHandler = event => {
-        this.setState({ picture : event.target.files[0] })
-    }
+    
 
     render() {
         console.log(this.state.name)
@@ -52,7 +50,7 @@ class Detail extends React.Component {
                 </Media>
                 <Media body>
                     <Media heading className="mediaheading">
-                    {this.state.name}
+                    <h1>{this.state.name}</h1>
                     </Media>
                     <p className = "details">{this.state.description}</p>
                     <div>
