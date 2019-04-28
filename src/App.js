@@ -21,8 +21,8 @@ class App extends React.Component {
       <>
       <Jumbotron/>
       <Navbar/>
-      <h1>Welcome to Artsy Fartsy</h1>
-      <Carousel/>
+      
+
       <Switch>
         <Route exact path="/Submit" component={Submit} />
         <Route exact path="/SignUp" component={SignUp} />

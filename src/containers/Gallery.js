@@ -64,12 +64,6 @@ class Gallery extends React.Component {
     handleClickPhotography = () => {
         this.setState({category : 'Photography'})
     }
-
-    handleClickWaterColour = () => {
-        this.setState({category : 'WaterColour'})
-    }
-            
-        
        
     
 
@@ -80,7 +74,7 @@ class Gallery extends React.Component {
         return (
             <>
             <div className="button">
-                <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickBaroque} color="secondary" className="butt">Baroque</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickMedieval} color="info" className="butt">Medieval</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button><Button onClick = {this.handleClickWaterColour} color="primary" className="butt">Water Colour</Button>
+                <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickBaroque} color="secondary" className="butt">Baroque</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickMedieval} color="info" className="butt">Medieval</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
             </div>  
             <h3>Category : {this.state.category}</h3>
                 { 
@@ -113,7 +107,7 @@ class Gallery extends React.Component {
             return(
                 <>
                 <div className="button">
-                    <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickBaroque} color="secondary" className="butt">Baroque</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickMedieval} color="info" className="butt">Medieval</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button><Button onClick = {this.handleClickWaterColour} color="primary" className="butt">Water Colour</Button>
+                    <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickBaroque} color="secondary" className="butt">Baroque</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickMedieval} color="info" className="butt">Medieval</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
                 </div> 
                 <h3>Category : {this.state.category}</h3>
                 { 
@@ -144,7 +138,7 @@ class Gallery extends React.Component {
             return(
                 <>
                 <div className="button">
-                    <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickBaroque} color="secondary" className="butt">Baroque</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickMedieval} color="info" className="butt">Medieval</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button><Button onClick = {this.handleClickWaterColour} color="primary" className="butt">Water Colour</Button>
+                    <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickBaroque} color="secondary" className="butt">Baroque</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickMedieval} color="info" className="butt">Medieval</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
                 </div> 
                 <h3>Category : {this.state.category}</h3>
                 { 
@@ -176,7 +170,7 @@ class Gallery extends React.Component {
             return(
                 <>
                 <div className="button">
-                    <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickBaroque} color="secondary" className="butt">Baroque</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickMedieval} color="info" className="butt">Medieval</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button><Button onClick = {this.handleClickWaterColour} color="primary" className="butt">Water Colour</Button>
+                    <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickBaroque} color="secondary" className="butt">Baroque</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickMedieval} color="info" className="butt">Medieval</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
                 </div> 
                 <p>No Artwork Available</p>
                 </>

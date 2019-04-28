@@ -34,9 +34,17 @@ class navbar extends React.Component {
               </NavItem>
               
               {sessionStorage.getItem('autoken')?
+              <>
               <NavItem>
+                <NavLink  href="/Profile">Profile</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink  href="/Submit">Submit Artwork</NavLink>
+              </NavItem>
+              <NavItem > 
                 <NavLink onClick={this.handlelogout} href="/Login">Logout</NavLink>
               </NavItem>
+              </>
               :
               <NavItem>
                 <NavLink href="/Login">Login</NavLink>

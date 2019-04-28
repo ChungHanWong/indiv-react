@@ -10,7 +10,8 @@ class Submit extends React.Component {
              name : '',
              category : '',
              description : '' ,
-             picture : null, };
+             picture : null,
+             userid : sessionStorage.getItem('id'), };
         //  this.onDrop = this.onDrop.bind(this);
     }
     // onDrop(picture) {
@@ -21,12 +22,13 @@ class Submit extends React.Component {
   
     handleSubmit = event => {
     event.preventDefault()
-    let {name,category,description,picture} = this.state;
+    let {name,category,description,picture,userid} = this.state;
     let fd = new FormData();
     fd.append('picture', picture )
     fd.append('name', name)
     fd.append('category', category)
     fd.append('description', description)
+    fd.append('id', userid)
     axios.post("http://127.0.0.1:5000/paintings/paintingsubmit", fd, {headers: {
         'Content-Type': 'multipart/form-data'
       }})
@@ -56,7 +58,7 @@ class Submit extends React.Component {
     }
 
     render() {
-        console.log(this.state.category)
+        console.log(this.state.userid)
         return (
             
           <div >
@@ -81,7 +83,7 @@ class Submit extends React.Component {
                             <option>Modern</option>
                             <option>Drawing</option>
                             <option>Photography</option>
-                            <option>Water Colour</option>
+                            
                         </Input>
                     </FormGroup>
                     <FormGroup>

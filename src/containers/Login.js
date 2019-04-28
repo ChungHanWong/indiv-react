@@ -7,6 +7,7 @@ class Login extends React.Component {
     state = {
         emailaddress: '' ,
         password: '',
+        
     }
 
     handleSubmit = event => {
@@ -25,6 +26,7 @@ class Login extends React.Component {
                 sessionStorage.setItem('email', response.data.email)
                 sessionStorage.setItem('profilepic', response.data.profilepic)
                 sessionStorage.setItem('bio', response.data.bio)
+                window.location.reload()
 		//  	sessionStorage.setItem('currentUserPic', `http://next-curriculum-instagram.s3.amazonaws.com/${response.data.user.profile_picture}`)
 		})
 		.catch(error => {
@@ -44,6 +46,7 @@ class Login extends React.Component {
     }
       
     render(){
+        console.log(this.state.login)
         return(
             <>
                 <Form onSubmit={this.handleSubmit}>

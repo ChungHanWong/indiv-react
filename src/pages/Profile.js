@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { Media,Button } from 'reactstrap';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import {  Form, FormGroup, Label, Input } from 'reactstrap';
 import nopic from './no_pic.gif'
+import Modal from '../containers/Modal'
 
 
 class Profile extends React.Component {
@@ -17,11 +18,13 @@ class Profile extends React.Component {
         axios.get('http://localhost:5000/profile/', 
             { headers: { Authorization: `Bearer ${sessionStorage.getItem('autoken')}` } })
             .then(response => {
-                
+                let propic = sessionStorage.getItem('profilepic')
+                let bi = sessionStorage.getItem('bio')
+                let name = sessionStorage.getItem('username')
                 console.log(response.data.logged_in_as.username)
-                this.setState({username:response.data.logged_in_as.username})
-                this.setState({bio:response.data.logged_in_as.bio})
-                this.setState({profilepic:response.data.logged_in_as.profilepic})
+                this.setState({username:name})
+                this.setState({bio:bi})
+                this.setState({profilepic:propic})
                 
                 //this.setState({currentUser: this.props.currentUser})
             })
@@ -39,7 +42,9 @@ class Profile extends React.Component {
         .then(response => {
             console.log(response.data)
             alert(response.data)
-            this.setState({profilepic : response.data.profilepic})
+            sessionStorage.setItem('profilepic', response.data.profilepic)
+            // this.setState({profilepic : response.data.profilepic})
+            window.location.reload()
         })
         .catch(error => {
         alert("error uploading")
@@ -80,7 +85,7 @@ class Profile extends React.Component {
                     <h1>{this.state.username}</h1>
                     </Media>
                     <p className = "details">{this.state.bio}</p>
-                   
+                    <Modal />
                     </Media>
                 </Media>
             </>
