@@ -4,7 +4,7 @@ import { Media,Button } from 'reactstrap';
 import {  Form } from 'reactstrap';
 import nopic from './no_pic.gif'
 import Modal from '../containers/Modal'
-import { pbkdf2 } from 'crypto';
+
 
 
 
