@@ -4,7 +4,8 @@ import { Media,Button } from 'reactstrap';
 import {  Form } from 'reactstrap';
 import nopic from './no_pic.gif'
 import Modal from '../containers/Modal'
-
+import { pbkdf2 } from 'crypto';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 
 
 
@@ -14,7 +15,7 @@ class Profile extends React.Component {
         profilepic:'',
         bio : '',
         picture : null,
-        
+        artwork : '',
 
     }
     componentDidMount() {
@@ -24,11 +25,11 @@ class Profile extends React.Component {
                 let propic = sessionStorage.getItem('profilepic')
                 let bi = sessionStorage.getItem('bio')
                 let name = sessionStorage.getItem('username')
-                console.log(response.data.logged_in_as.username)
+                console.log(response.data)
                 this.setState({username:name})
                 this.setState({bio:bi})
                 this.setState({profilepic:propic})
-                
+                this.setState({artwork:response.data})
                 //this.setState({currentUser: this.props.currentUser})
             })
     }
@@ -84,9 +85,19 @@ class Profile extends React.Component {
         this.setState({bio : event.target.value})
     }
 
+    createList = () => {
+        let artwork = this.state.artwork
+        let work = []
+        
+        for (let i = 0; i < artwork.length; i++) {
+            work.push(<ListGroupItem tag="a" href="#" action>Name of Artwork :{artwork[i].name} Bidding Price : ${artwork[i].price} </ListGroupItem>)
+        }
+        return work
+      }
+
     
     render() {
-        console.log(this.state.profilepic)
+        console.log(this.state.artwork)
         
         return(
             <>
@@ -124,6 +135,13 @@ class Profile extends React.Component {
                     </div>
                     </Media>
                 </Media>
+                
+                
+                <div class="listOfArtwork">
+                <h3>Artist's Artwork</h3>
+                    {this.createList()}
+                    
+                </div>
             </>
         )
     }

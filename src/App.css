@@ -77,6 +77,10 @@ h1 {
   text-align: center;
 }
 
+.listOfArtwork{
+  margin : 70px;
+}
+
 /* Homepage */
 .carouselimg{
   width: 1700px;
