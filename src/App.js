@@ -10,7 +10,7 @@ import Detail from './containers/Detail'
 import Navbar from './containers/Navbar'
 import Profile from './pages/Profile'
 import OtherProfiles from './pages/OtherProfiles'
-import Carousel from './containers/Carousel'
+import Homepage from './pages/Homepage'
 
 
 class App extends React.Component {
@@ -25,6 +25,7 @@ class App extends React.Component {
       
 
       <Switch>
+        <Route exact path="/" render={() => (<Homepage />)} />	 
         <Route exact path="/Submit" component={Submit} />
         <Route exact path="/SignUp" component={SignUp} />
         <Route exact path="/Login" component={Login} />

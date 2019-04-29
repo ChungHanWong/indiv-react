@@ -79,7 +79,6 @@ class Submit extends React.Component {
                         <Input type="select" name="category" onChange={this.handleCategoryInput} >
                             <option>Baroque</option>
                             <option>Romantic</option>
-                            <option>Medieval</option>
                             <option>Modern</option>
                             <option>Drawing</option>
                             <option>Photography</option>

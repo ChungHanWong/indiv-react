@@ -62,7 +62,7 @@ class OtherProfiles extends React.Component {
                     <h1>{this.state.username}</h1>
                     </Media>
                     {this.state.bio === null?
-                    <p className = "details">Write Something About Yourself</p>
+                    <p className = "details">This Artist Has Nothing To Say</p>
                     :
                     <p className = "details">{this.state.bio}</p>
                     }

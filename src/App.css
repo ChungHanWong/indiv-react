@@ -5,6 +5,9 @@
   background-size: cover;
   margin-bottom: 0px;
 }
+/* Homepage */
+
+
 /* This is for Gallery */
 .hi{
   width: 280px;
@@ -51,9 +54,16 @@
   text-align : center;
 }
 
-h3,h4 {
+h2,h3,h4 {
   text-align: center;
 }
+
+.backtogallery{
+  text-align: center;
+  margin : 50px;
+}
+
+
 
 /* Profile */
 .mediaprofilepic {

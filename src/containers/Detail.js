@@ -12,6 +12,7 @@ class Detail extends React.Component {
         price: "",
         image:"",
         artist:"",
+        artist_id:"",
     }
 
     componentDidMount()  {
@@ -25,6 +26,7 @@ class Detail extends React.Component {
             let image = result.data.image
             let price = result.data.price
             let artist = result.data.artist
+            let artist_id = result.data.artist_id
             this.setState({
                 name : name,
                 category :category,
@@ -32,6 +34,7 @@ class Detail extends React.Component {
                 image : image,
                 price : price,
                 artist : artist,
+                artist_id : artist_id,
             })
             
         })
@@ -70,7 +73,7 @@ class Detail extends React.Component {
     
 
     render() {
-        console.log(this.state.name)
+        console.log(this.state.artist_id)
         return(
             <>
              <Media>
@@ -81,7 +84,7 @@ class Detail extends React.Component {
                     <Media heading className="mediaheading">
                     <h1>{this.state.name} </h1> 
                     <h3>by</h3>
-                    <h4 >{this.state.artist}</h4>
+                    <Button tag={Link} to={`/OtherProfiles/${this.state.artist_id}`}>{this.state.artist}</Button>
                     </Media>
                     <p className = "details">{this.state.description}</p>
                     <div>
@@ -98,7 +101,7 @@ class Detail extends React.Component {
                                 onChange={this.handlePriceInput}
                             />
                         </FormGroup>
-                        <Button variant="primary" type="submit">
+                        <Button color="warning" variant="primary" type="submit">
                             Submit
                         </Button>
                     </Form>
@@ -106,8 +109,9 @@ class Detail extends React.Component {
 
                     </Media>
             </Media>
-
-            <Button tag={Link} to={`/Gallery`}>Back to Gallery</Button>
+            <div className = "backtogallery">
+                <Button  color="info" tag={Link} to={`/Gallery`}>Back to Gallery</Button>
+            </div>
             </>
         )
     }
