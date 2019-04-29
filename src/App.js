@@ -9,6 +9,7 @@ import Gallery from './containers/Gallery'
 import Detail from './containers/Detail'
 import Navbar from './containers/Navbar'
 import Profile from './pages/Profile'
+import OtherProfiles from './pages/OtherProfiles'
 import Carousel from './containers/Carousel'
 
 
@@ -30,6 +31,8 @@ class App extends React.Component {
         <Route exact path="/Gallery" component={Gallery} />
         <Route exact path="/detail/:id" component={Detail} />
         <Route exact path="/Profile" component={Profile} />
+        <Route exact path="/OtherProfiles/:id" component={OtherProfiles} />
+        
       </Switch>
       </>
     )

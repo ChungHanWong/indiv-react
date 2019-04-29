@@ -165,6 +165,38 @@ class Gallery extends React.Component {
                 </>
             )
         }
+
+        else if (this.state.category === "Romantic") {
+            return(
+                <>
+                <div className="button">
+                    <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickBaroque} color="secondary" className="butt">Baroque</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickMedieval} color="info" className="butt">Medieval</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
+                </div> 
+                <h3>Category : {this.state.category}</h3>
+                { 
+                    this.state.images.map(image => {
+                        return(
+                            image.category==="Romantic"
+                            ? <div className="galleryimg">
+                                    <Card className="card">
+                                        <CardImg className="hi" src={image.image} alt="Card image cap" />
+                                        <CardBody>
+                                        <CardTitle>{image.name}</CardTitle>
+                                        <CardSubtitle>{image.category}</CardSubtitle>
+                                        <CardText>{image.description}</CardText>
+                                        
+                                        <Button tag={Link} to={`/detail/${image.id}`}>View Detail</Button>
+                                        </CardBody>
+                                    </Card>
+                                </div>
+                            : ""
+                        )
+                    }
+                    )	
+                } 
+                </>
+            )
+        }
         
         else{
             return(

@@ -5,8 +5,8 @@ import {  Form } from 'reactstrap';
 import nopic from './no_pic.gif'
 import Modal from '../containers/Modal'
 import { pbkdf2 } from 'crypto';
-import { ListGroup, ListGroupItem } from 'reactstrap';
-
+import {  ListGroupItem } from 'reactstrap';
+import { Link } from 'react-router-dom'
 
 
 class Profile extends React.Component {
@@ -31,6 +31,9 @@ class Profile extends React.Component {
                 this.setState({profilepic:propic})
                 this.setState({artwork:response.data})
                 //this.setState({currentUser: this.props.currentUser})
+            })
+            .catch(error => {    
+                console.log('ERROR: ', error)
             })
     }
 
@@ -90,7 +93,7 @@ class Profile extends React.Component {
         let work = []
         
         for (let i = 0; i < artwork.length; i++) {
-            work.push(<ListGroupItem tag="a" href="#" action>Name of Artwork :{artwork[i].name} Bidding Price : ${artwork[i].price} </ListGroupItem>)
+            work.push(<ListGroupItem tag={Link} to={`/detail/${artwork[i].id}`}>Name of Artwork :{artwork[i].name} Bidding Price : ${artwork[i].price} Bidder's Name : {artwork[i].bidder_name} <Button outline color="info">Accept</Button> </ListGroupItem>)
         }
         return work
       }
