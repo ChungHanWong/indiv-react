@@ -1,9 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Media,Button } from 'reactstrap';
-import {  Form } from 'reactstrap';
+import { Media } from 'reactstrap';
 import nopic from './no_pic.gif'
-import Modal from '../containers/Modal'
 import { Link } from 'react-router-dom'
 import {  ListGroupItem } from 'reactstrap';
 

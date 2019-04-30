@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Media,Button } from 'reactstrap';
-import {  Form } from 'reactstrap';
+import {  Form,FormGroup,Input,Label } from 'reactstrap';
 import nopic from './no_pic.gif'
 import Modal from '../containers/Modal'
 import { pbkdf2 } from 'crypto';
@@ -10,13 +10,18 @@ import { Link } from 'react-router-dom'
 
 
 class Profile extends React.Component {
-    state = {
+    constructor(props){
+    super(props);
+    this.input = React.createRef();
+    this.state = {
         username:'',
         profilepic:'',
         bio : '',
         picture : null,
         artwork : '',
+        id_sold : ''
 
+    }
     }
     componentDidMount() {
         axios.get('http://localhost:5000/profile/', 
@@ -88,20 +93,56 @@ class Profile extends React.Component {
         this.setState({bio : event.target.value})
     }
 
+    handleIdSold = (event) => {
+        this.setState({id_sold: event.target})
+    }
+
+    handleSubmitSold = event => {
+        event.preventDefault()
+        
+        
+        
+        let fd = new FormData();
+        fd.append('id', this.input.current.value )
+
+        axios.post("http://127.0.0.1:5000/sold/", fd, {headers: {
+            'Content-Type': 'multipart/form-data'
+            }})
+        .then(response => {
+            console.log(response.data)
+            alert(response.data)
+            
+            window.location.reload()
+        })
+        .catch(error => {
+        alert("error uploading")
+        })
+        
+    }
+
     createList = () => {
         let artwork = this.state.artwork
         let work = []
         
         for (let i = 0; i < artwork.length; i++) {
-            work.push(<ListGroupItem tag={Link} to={`/detail/${artwork[i].id}`}>Name of Artwork :{artwork[i].name} Bidding Price : ${artwork[i].price} Bidder's Name : {artwork[i].bidder_name} 
-            <Button outline color="info">Accept</Button> </ListGroupItem>)
+            work.push(<><ListGroupItem tag={Link} to={`/detail/${artwork[i].id}`}>Name of Artwork :{artwork[i].name} Bidding Price : ${artwork[i].price} Bidder's Name : {artwork[i].bidder_name} 
+            </ListGroupItem>
+                <form onSubmit={this.handleSubmitSold}>
+                   
+                    <input type="hidden" value={artwork[i].id} ref={this.input} />
+                    
+                    <input type="submit" value="Accept The Offer" />
+                </form>
+                    
+            </>
+            )
         }
         return work
       }
-
+    
     
     render() {
-        console.log(this.state.artwork)
+        console.log(this.state.id_sold)
         
         return(
             <>
