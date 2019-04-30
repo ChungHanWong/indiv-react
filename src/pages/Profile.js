@@ -93,7 +93,8 @@ class Profile extends React.Component {
         let work = []
         
         for (let i = 0; i < artwork.length; i++) {
-            work.push(<ListGroupItem tag={Link} to={`/detail/${artwork[i].id}`}>Name of Artwork :{artwork[i].name} Bidding Price : ${artwork[i].price} Bidder's Name : {artwork[i].bidder_name} <Button outline color="info">Accept</Button> </ListGroupItem>)
+            work.push(<ListGroupItem tag={Link} to={`/detail/${artwork[i].id}`}>Name of Artwork :{artwork[i].name} Bidding Price : ${artwork[i].price} Bidder's Name : {artwork[i].bidder_name} 
+            <Button outline color="info">Accept</Button> </ListGroupItem>)
         }
         return work
       }

@@ -11,6 +11,7 @@ import Navbar from './containers/Navbar'
 import Profile from './pages/Profile'
 import OtherProfiles from './pages/OtherProfiles'
 import Homepage from './pages/Homepage'
+import Braintree from './pages/btnew'
 
 
 class App extends React.Component {
@@ -33,6 +34,7 @@ class App extends React.Component {
         <Route exact path="/detail/:id" component={Detail} />
         <Route exact path="/Profile" component={Profile} />
         <Route exact path="/OtherProfiles/:id" component={OtherProfiles} />
+        <Route exact path="/Braintree" component={Braintree} />
         
       </Switch>
       </>
