@@ -12,6 +12,8 @@ import Profile from './pages/Profile'
 import OtherProfiles from './pages/OtherProfiles'
 import Homepage from './pages/Homepage'
 import Braintree from './pages/btnew'
+import Purchase from './pages/Purchase'
+import Experiment from './containers/experiment'
 
 
 class App extends React.Component {
@@ -35,7 +37,8 @@ class App extends React.Component {
         <Route exact path="/Profile" component={Profile} />
         <Route exact path="/OtherProfiles/:id" component={OtherProfiles} />
         <Route exact path="/Braintree" component={Braintree} />
-        
+        <Route exact path="/Purchase" component={Purchase} />
+        <Route exact path="/experiment" component={Experiment} />
       </Switch>
       </>
     )

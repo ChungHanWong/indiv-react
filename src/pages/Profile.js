@@ -7,6 +7,7 @@ import Modal from '../containers/Modal'
 import { pbkdf2 } from 'crypto';
 import {  ListGroupItem } from 'reactstrap';
 import { Link } from 'react-router-dom'
+// import Purchase from '../containers/Purchase'
 
 
 class Profile extends React.Component {
@@ -20,7 +21,7 @@ class Profile extends React.Component {
         picture : null,
         artwork : '',
         id_sold : '',
-        purchased:'',
+        // purchased:'',
 
     }
     }
@@ -36,7 +37,7 @@ class Profile extends React.Component {
                 this.setState({bio:bi})
                 this.setState({profilepic:propic})
                 this.setState({artwork:response.data.artwork})
-                this.setState({purchased:response.data.purchase})
+                // this.setState({purchased:response.data.purchase})
                 //this.setState({currentUser: this.props.currentUser})
             })
             .catch(error => {    
@@ -116,7 +117,7 @@ class Profile extends React.Component {
         
     }
 
-    createList = () => {
+    createListOfArtwork = () => {
         let artwork = this.state.artwork
         let work = []
         for (let i = 0; i < artwork.length; i++) {
@@ -139,6 +140,24 @@ class Profile extends React.Component {
         }
         return work
       }
+
+    //   createListOfPurchase = () => {
+    //     let purchase = this.state.purchased
+    //     let bought = []
+    //     for (let i = 0; i < purchase.length; i++) {
+    //         purchase.push(
+    //         <>
+    //         <ListGroupItem tag={Link} to={`/detail/${purchase[i].id}`}>Name of Artwork :{purchase[i].name} Bidding Price : ${purchase[i].price} Bidder's Name : {purchase[i].bidder_name} 
+    //         </ListGroupItem>
+    //             <form >
+    //                 <input type="hidden" value={purchase[i].id} ref={this.input} />
+    //                 <input type="submit" value="Confirm Purchase" />
+    //             </form>
+    //         </>
+    //         )
+    //     }
+    //     return bought
+    //   }
     
     
     render() {
@@ -183,16 +202,31 @@ class Profile extends React.Component {
                 
                 
                 <div class="listOfArtwork">
-                <h3>Artist's Artwork</h3>
-                    {this.createList()}
+                    <h3>Artist's Artwork</h3>
+                    {this.createListOfArtwork()}
                     
                 </div>
 
-                <div class="listOfArtwork">
-                <h3>Artwork Purchased</h3>
-                    
-                    
-                </div>
+                {/* { 
+                    this.state.artwork.map(artwork => {
+                        return(
+                            <>
+                            {artwork.sold === false?
+                                <>
+                                <ListGroupItem tag={Link} to={`/detail/${artwork.id}`}>Name of Artwork :{artwork.name} Bidding Price : ${artwork.price} Bidder's Name : {artwork.bidder_name} 
+                                </ListGroupItem>
+                                    <form onSubmit={this.handleSubmitSold}>
+                                        <input type="hidden" value={artwork.id} ref={this.input} />
+                                        <input type="submit" value="Accept The Offer" />
+                                    </form>
+                                </>
+                                :
+                                ""
+                            }     
+                            </>
+                        )
+                    })
+                } */}
             </>
         )
     }

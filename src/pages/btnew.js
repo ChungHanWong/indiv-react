@@ -2,7 +2,8 @@
 import React from "react";
 import DropIn from "braintree-web-drop-in-react";
 import axios from 'axios';
-
+import {Button} from 'reactstrap';
+import { Link } from 'react-router-dom'
  
 class braintree extends React.Component {
   instance;
@@ -12,6 +13,7 @@ class braintree extends React.Component {
     transacted : false,
     message : '',
     transac : '',
+    value : '',
   };
  
   async componentDidMount() {
@@ -32,9 +34,10 @@ class braintree extends React.Component {
     // Send the nonce to your server
     let nounce  = await this.instance.requestPaymentMethod();
     console.log(nounce.nonce)
-    
+  
     axios.post("http://127.0.0.1:5000/braintree/checkouts", {
-        payment_method_nonce : nounce.nonce
+        payment_method_nonce : nounce.nonce,
+        amount : this.state.value,
       })
     .then(response => {
         console.log(response.data)
@@ -48,9 +51,13 @@ class braintree extends React.Component {
     })
     
   }
+
+  updateValue = (event) => {
+    this.setState({value:event.target.value})
+  }
  
   render() {
-      console.log(this.state.transacted)
+    console.log(this.state.value)
     if (!this.state.clientToken) {
       return (
         <div>
@@ -66,6 +73,7 @@ class braintree extends React.Component {
             <h3>{this.state.message.icon}</h3>
             <h3>{this.state.message.message}</h3>
           </div>
+          <Button tag={Link} to={`/Profile`}>Back to Profile</Button>
           <section>
             <h5>Transaction</h5>
               <table cellpadding="0" cellspacing="0">
@@ -91,12 +99,17 @@ class braintree extends React.Component {
             </section>
         </>
       )
-    }  
+    } 
+    
+
 
     else {
       return (
         <div>
+          <label>Amount</label>
+          <input onChange={this.updateValue}></input>
           <DropIn
+            
             options={{ authorization: this.state.clientToken }}
             onInstance={instance => (this.instance = instance)}
           />

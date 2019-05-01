@@ -26,7 +26,7 @@ class Login extends React.Component {
                 sessionStorage.setItem('email', response.data.email)
                 sessionStorage.setItem('profilepic', response.data.profilepic)
                 sessionStorage.setItem('bio', response.data.bio)
-                window.location.reload()
+                window.location.assign('http://localhost:3000/')
 		//  	sessionStorage.setItem('currentUserPic', `http://next-curriculum-instagram.s3.amazonaws.com/${response.data.user.profile_picture}`)
 		})
 		.catch(error => {
