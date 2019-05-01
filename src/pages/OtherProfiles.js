@@ -41,17 +41,16 @@ class OtherProfiles extends React.Component {
     }
 
     render(){
-        console.log(this.state.artwork)
+        console.log(this.state.bio)
         return(
             <>
             <h1>Profile Page</h1>
                 <Media>
                 <Media left href="#">
-                    {this.state.profilepic?
-                    <Media className="mediaprofilepic" src = {this.state.profilepic} alt="Generic placeholder image" />
-                    
-                    :
+                    {this.state.profilepic === 'http://hanagram.s3.amazonaws.com/None' ?
                     <Media className="mediaprofilepic" src = {nopic} alt="Generic placeholder image" />
+                    :
+                    <Media className="mediaprofilepic" src = {this.state.profilepic} alt="Generic placeholder image" />
                     }
                
                 </Media>
@@ -59,7 +58,7 @@ class OtherProfiles extends React.Component {
                     <Media heading className="mediaheading">
                     <h1>{this.state.username}</h1>
                     </Media>
-                    {this.state.bio === null?
+                    {this.state.bio === null ?
                     <p className = "details">This Artist Has Nothing To Say</p>
                     :
                     <p className = "details">{this.state.bio}</p>

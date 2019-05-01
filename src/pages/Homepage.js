@@ -12,6 +12,7 @@ class Homepage extends React.Component {
             <>
                 <h1>Welcome to Artsy Fartsy</h1>
                 <h2>{this.state.username}</h2>
+                
                 <Container>
 
                     <Row>
@@ -23,7 +24,8 @@ class Homepage extends React.Component {
                     <Col> <h3>About </h3>
                     <h4>For Buyers</h4>
                     <p className="picSubmit">Artsy Fartsy allows you to search millions of artwork and buy the one that you admire most by bidding.</p></Col>
-                    <Col>.col</Col>
+                    <Col><h3>Be Inspired</h3>
+                    <p className="picSubmit">Not thinking to purchase any artwork? That's fine. At least you can be inspired by the amazing artwork of these great artists.</p></Col>
                     <Col>.col</Col>
                     </Row>
                 </Container>

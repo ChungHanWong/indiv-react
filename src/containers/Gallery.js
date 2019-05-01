@@ -46,8 +46,8 @@ class Gallery extends React.Component {
         this.setState({category : 'Modern'})
     }
 
-    handleClickBaroque = () => {
-        this.setState({category : 'Baroque'})
+    handleClickAll = () => {
+        this.setState({category : ''})
     }
 
     handleClickRomantic = () => {
@@ -78,7 +78,7 @@ class Gallery extends React.Component {
         return (
             <>
             <div className="button">
-                <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickBaroque} color="info" className="butt">Baroque</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
+                <Button onClick={this.handleClickAll} color="info" className="butt">All</Button><Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
             </div>  
             <h3>Category : {this.state.category}</h3>
             <Form>
@@ -123,7 +123,7 @@ class Gallery extends React.Component {
             return(
                 <>
                 <div className="button">
-                    <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickBaroque} color="info" className="butt">Baroque</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
+                    <Button onClick={this.handleClickAll} color="info" className="butt">All</Button><Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
                 </div> 
                 <h3>Category : {this.state.category}</h3>
                 <Form>
@@ -165,7 +165,7 @@ class Gallery extends React.Component {
             return(
                 <>
                 <div className="button">
-                    <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickBaroque} color="info" className="butt">Baroque</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
+                    <Button onClick={this.handleClickAll} color="info" className="butt">All</Button><Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
                 </div>
                 <h3>Category : {this.state.category}</h3>
                 <Form>
@@ -208,7 +208,7 @@ class Gallery extends React.Component {
             return(
                 <>
                 <div className="button">
-                    <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickBaroque} color="info" className="butt">Baroque</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
+                    <Button onClick={this.handleClickAll} color="info" className="butt">All</Button><Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
                 </div>
                 <h3>Category : {this.state.category}</h3>
                 <Form>
@@ -247,54 +247,11 @@ class Gallery extends React.Component {
             )
         }
 
-        else if (this.state.category === "Baroque") {
-            return(
-                <>
-                <div className="button">
-                    <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickBaroque} color="info" className="butt">Baroque</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
-                </div>
-                <h3>Category : {this.state.category}</h3>
-                <Form>
-                    <FormGroup>
-                        <Label for="name">Search</Label>
-                        <Input
-                            type="text"
-                            value = {this.state.search}
-                            placeholder="Name of Painting"
-                            onChange={this.updateSearch}
-                        />
-                    </FormGroup>
-                </Form>
-                { 
-                    filteredNames.map(image => {
-                        return(
-                            image.category==="Baroque"
-                            ? <div className="galleryimg">
-                                    <Card className="card">
-                                        <CardImg className="hi" src={image.image} alt="Card image cap" />
-                                        <CardBody>
-                                        <CardTitle>{image.name}</CardTitle>
-                                        <CardSubtitle>{image.category}</CardSubtitle>
-                                        <CardText>{image.description}</CardText>
-                                        
-                                        <Button tag={Link} to={`/detail/${image.id}`}>View Detail</Button>
-                                        </CardBody>
-                                    </Card>
-                                </div>
-                            : ""
-                        )
-                    }
-                    )	
-                } 
-                </>
-            )
-        }
-        
         else{
             return(
                 <>
                 <div className="button">
-                    <Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickBaroque} color="info" className="butt">Baroque</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
+                    <Button onClick={this.handleClickAll} color="info" className="butt">All</Button><Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
                 </div>
                 <h3>Category : {this.state.category}</h3>
                 <Form>

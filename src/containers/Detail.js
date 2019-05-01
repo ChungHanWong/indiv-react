@@ -88,9 +88,10 @@ class Detail extends React.Component {
                     </Media>
                     <p className = "details">{this.state.description}</p>
                     <div>
-                    <p className = "details">Bidding Price :{this.state.price}</p>
+                    <p className = "details">Bidding Price : $ {this.state.price}</p>
                     </div>
                     <div>
+                    { sessionStorage.getItem('autoken')?
                     <Form onSubmit={this.handleSubmitPrice}>
                         <FormGroup>
                             <Label for="name">How Much Would Like to Bid?</Label>
@@ -105,6 +106,9 @@ class Detail extends React.Component {
                             Submit
                         </Button>
                     </Form>
+                    :
+                    ''
+                    }
                     </div>
 
                     </Media>

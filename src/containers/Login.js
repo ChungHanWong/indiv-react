@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-
+import { Link } from 'react-router-dom'
 
 class Login extends React.Component {
     state = {
@@ -19,7 +19,7 @@ class Login extends React.Component {
 		})
 		.then(response => {
 		 	console.log(response.data)
-		 	alert(response.data.username)
+		 	
 		 	    sessionStorage.setItem('autoken', response.data.access_token)
 		 	    sessionStorage.setItem('id', response.data.id)
                 sessionStorage.setItem('username', response.data.username)
@@ -74,6 +74,12 @@ class Login extends React.Component {
                         Submit
                     </Button>
                 </Form>
+
+                <div className="backtogallery">
+                
+                <Button  color="link" tag={Link} to={`/SignUp`}>New Member? Sign Up Now</Button>
+            
+                </div>
 
             </>
 			)

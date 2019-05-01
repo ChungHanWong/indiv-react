@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import {Link} from 'react-router-dom'
 
 class SignUp extends React.Component {
 	state={
@@ -19,7 +20,20 @@ class SignUp extends React.Component {
 		  password: password,
         })
         .then(response => {
-            alert("You Have SignedUp")
+            if (response.data.message === 'Username Already Exists' || response.data.message=== 'Email Already Exists' ) {
+                alert(response.data.message)
+            }
+            else {
+                sessionStorage.setItem('autoken', response.data.access_token)
+		 	    sessionStorage.setItem('id', response.data.id)
+                sessionStorage.setItem('username', response.data.username)
+                sessionStorage.setItem('email', response.data.email)
+                sessionStorage.setItem('profilepic', response.data.profilepic)
+                sessionStorage.setItem('bio', response.data.bio)
+                alert(response.data.message)
+                window.location.reload()
+            }
+            
         })
 		.catch(error => {
 			
@@ -78,7 +92,9 @@ class SignUp extends React.Component {
                         Submit
                     </Button>
                 </Form>
-
+                <div className="backtogallery">
+                    <Button  color="link" tag={Link} to={`/Login`}>Already A Member? Login Now</Button>
+                </div>
             </>
 			)
 		}

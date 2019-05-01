@@ -19,7 +19,8 @@ class Profile extends React.Component {
         bio : '',
         picture : null,
         artwork : '',
-        id_sold : ''
+        id_sold : '',
+        purchased:'',
 
     }
     }
@@ -30,11 +31,12 @@ class Profile extends React.Component {
                 let propic = sessionStorage.getItem('profilepic')
                 let bi = sessionStorage.getItem('bio')
                 let name = sessionStorage.getItem('username')
-                console.log(response.data)
+                
                 this.setState({username:name})
                 this.setState({bio:bi})
                 this.setState({profilepic:propic})
-                this.setState({artwork:response.data})
+                this.setState({artwork:response.data.artwork})
+                this.setState({purchased:response.data.purchase})
                 //this.setState({currentUser: this.props.currentUser})
             })
             .catch(error => {    
@@ -53,7 +55,6 @@ class Profile extends React.Component {
           }})
         .then(response => {
             console.log(response.data)
-            alert(response.data)
             sessionStorage.setItem('profilepic', response.data.profilepic)
             // this.setState({profilepic : response.data.profilepic})
             window.location.reload()
@@ -73,8 +74,7 @@ class Profile extends React.Component {
             'Content-Type': 'multipart/form-data'
             }})
         .then(response => {
-            console.log(response.data)
-            alert(response.data)
+            
             sessionStorage.setItem('bio', response.data.bio)
             // this.setState({profilepic : response.data.profilepic})
             window.location.reload()
@@ -99,12 +99,8 @@ class Profile extends React.Component {
 
     handleSubmitSold = event => {
         event.preventDefault()
-        
-        
-        
         let fd = new FormData();
         fd.append('id', this.input.current.value )
-
         axios.post("http://127.0.0.1:5000/sold/", fd, {headers: {
             'Content-Type': 'multipart/form-data'
             }})
@@ -123,17 +119,21 @@ class Profile extends React.Component {
     createList = () => {
         let artwork = this.state.artwork
         let work = []
-        
         for (let i = 0; i < artwork.length; i++) {
-            work.push(<><ListGroupItem tag={Link} to={`/detail/${artwork[i].id}`}>Name of Artwork :{artwork[i].name} Bidding Price : ${artwork[i].price} Bidder's Name : {artwork[i].bidder_name} 
+            work.push(
+            <>
+            {artwork[i].sold === false?
+            <>
+            <ListGroupItem tag={Link} to={`/detail/${artwork[i].id}`}>Name of Artwork :{artwork[i].name} Bidding Price : ${artwork[i].price} Bidder's Name : {artwork[i].bidder_name} 
             </ListGroupItem>
                 <form onSubmit={this.handleSubmitSold}>
-                   
                     <input type="hidden" value={artwork[i].id} ref={this.input} />
-                    
                     <input type="submit" value="Accept The Offer" />
                 </form>
-                    
+            </>
+            :
+            ""
+            }     
             </>
             )
         }
@@ -142,18 +142,18 @@ class Profile extends React.Component {
     
     
     render() {
-        console.log(this.state.id_sold)
         
+        console.log(this.state.purchased)
         return(
             <>
                 <h1>Profile Page</h1>
                 <Media>
                 <Media left href="#">
-                    {this.state.profilepic?
-                    <Media className="mediaprofilepic" src = {this.state.profilepic} alt="Generic placeholder image" />
-                    
-                    :
+                    {this.state.profilepic === 'http://hanagram.s3.amazonaws.com/None' ?
                     <Media className="mediaprofilepic" src = {nopic} alt="Generic placeholder image" />
+                    :
+                    <Media className="mediaprofilepic" src = {this.state.profilepic} alt="Generic placeholder image" />
+
                     }
                 <div className="picSubmit">
                     <Form onSubmit={this.handleSubmit}>
@@ -170,7 +170,7 @@ class Profile extends React.Component {
                     <Media heading className="mediaheading">
                     <h1>{this.state.username}</h1>
                     </Media>
-                    {this.state.bio === null?
+                    {this.state.bio === 'null'  ?
                     <p className = "details">Write Something About Yourself</p>
                     :
                     <p className = "details">{this.state.bio}</p>
@@ -185,6 +185,12 @@ class Profile extends React.Component {
                 <div class="listOfArtwork">
                 <h3>Artist's Artwork</h3>
                     {this.createList()}
+                    
+                </div>
+
+                <div class="listOfArtwork">
+                <h3>Artwork Purchased</h3>
+                    
                     
                 </div>
             </>
