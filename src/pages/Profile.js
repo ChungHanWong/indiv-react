@@ -4,7 +4,7 @@ import { Media,Button } from 'reactstrap';
 import {  Form } from 'reactstrap';
 import nopic from './no_pic.gif'
 import Modal from '../containers/Modal'
-import { pbkdf2 } from 'crypto';
+
 
 import ArtworkForm from '../containers/ArtworkForm'
 
@@ -98,7 +98,7 @@ class Profile extends React.Component {
 
     
     render() {
-        console.log(this.state.purchased)
+        
         return(
             <>
                 <h1>Profile Page</h1>
@@ -125,7 +125,7 @@ class Profile extends React.Component {
                 </Media>
                 <Media body>
                     <Media heading className="mediaheading">
-                    <h1>{this.state.username}</h1>
+                    {this.state.username}
                     </Media>
                     {this.state.bio === 'null'  ?
                     <p className = "details">Write Something About Yourself</p>
@@ -139,15 +139,10 @@ class Profile extends React.Component {
                 </Media>
                 
                 
-                <div class="listOfArtwork">
+                <div className="listOfArtwork">
                     <h3>List of Artist's Artwork</h3>
                     {this.state.artwork.map(art =>
-                        <>
-                        
-                        <ArtworkForm artwork={art} />
-                        
-
-                        </>
+                        <ArtworkForm key={art.name} artwork={art} />
                     )
                     }
                     

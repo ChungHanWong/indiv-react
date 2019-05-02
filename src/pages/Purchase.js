@@ -1,8 +1,8 @@
 import React from 'react';
-import {  ListGroupItem } from 'reactstrap';
-import { Link } from 'react-router-dom'
 import axios from 'axios';
 import PurchaseForm from '../containers/PurchaseForm'
+import ListOfBid from '../components/listOfBid'
+import ListOfSuccessfulPurchases from '../components/listOfSuccessfulPurchases'
 
 class createListOfPurchase extends React.Component {
     constructor(props){
@@ -18,7 +18,7 @@ class createListOfPurchase extends React.Component {
         axios.get('http://localhost:5000/sold/purchase', 
             { headers: { Authorization: `Bearer ${sessionStorage.getItem('autoken')}` } })
             .then(response => {
-                console.log(response.data.purchase)
+                
                 // this.setState({purchased:response.data.purchase})
                 for (let i =0;i<response.data.purchase.length;i++){
                     const { name, image, id, paid } = response.data.purchase[i]
@@ -52,19 +52,13 @@ class createListOfPurchase extends React.Component {
     
 
     render(){
-  		console.log(this.state.purchased)
+  		
 	    return (
 	    	<>
             <div className="biddingArtwork">
                 <h3>Bidding Artwork</h3>
                 {this.state.bid.map(bid =>
-                    <>
-                        <ListGroupItem tag={Link} to={`/detail/${bid.id}`}>
-                            Name of Artwork :{bid.name}  
-                            Id : {bid.id}
-                            Bidding Price : {bid.price}
-                        </ListGroupItem>
-                    </>
+                    <ListOfBid key={bid.id} bid={bid}/>
                 )}
             </div>
             <div className="biddingArtwork">
@@ -73,10 +67,7 @@ class createListOfPurchase extends React.Component {
                 this.state.purchased.map(pur =>
                     <>
                     {pur.paid===false?
-                    <>
-                        
-                        <PurchaseForm purchase={pur} /> 
-                    </>
+                        <PurchaseForm key={pur.id} purchase={pur} /> 
                     :
                     ''}
                     </>
@@ -88,14 +79,7 @@ class createListOfPurchase extends React.Component {
                 {this.state.purchased.map(pur =>
                     <>
                     {pur.paid ===true?
-                        <>
-                        <ListGroupItem tag={Link} to={`/detail/${pur.id}`}>
-                            Name of Artwork :{pur.name}  
-                            Id : {pur.id}
-                            
-                        </ListGroupItem>
-                    
-                        </>
+                        <ListOfSuccessfulPurchases key={pur.id} pur={pur}/>
                         :
                         ''
                     }

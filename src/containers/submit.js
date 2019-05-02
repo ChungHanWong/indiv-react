@@ -58,7 +58,7 @@ class Submit extends React.Component {
     }
 
     render() {
-        console.log(this.state.userid)
+        
         return (
             
           <div >

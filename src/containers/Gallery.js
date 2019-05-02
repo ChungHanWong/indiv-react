@@ -1,13 +1,15 @@
 import React from 'react';
 import axios from 'axios';
-import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Form, FormGroup,Input,Label } from 'reactstrap';
+import {  Button } from 'reactstrap';
     import "../App.css"
-import { Link } from 'react-router-dom'
+
+import Cardy from '../components/Card'
+import FilterSearch from '../components/FilterSearch'
+import GalleryButton from '../components/GalleryButtons'
 
 class Gallery extends React.Component {
     state = {
-        category : '',
+        category : 'None',
         images : [],
         search : '',
     }
@@ -47,7 +49,7 @@ class Gallery extends React.Component {
     }
 
     handleClickAll = () => {
-        this.setState({category : ''})
+        this.setState({category : 'None'})
     }
 
     handleClickRomantic = () => {
@@ -68,7 +70,7 @@ class Gallery extends React.Component {
 
     
     render(){
-        console.log(this.state.category)
+        
         let filteredNames = this.state.images.filter(
             (image) => {
                 return image.name.toLowerCase().indexOf(this.state.search) !== -1
@@ -77,39 +79,17 @@ class Gallery extends React.Component {
         if (this.state.category === "Photography") {
         return (
             <>
-            <div className="button">
-                <Button onClick={this.handleClickAll} color="info" className="butt">All</Button><Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
-            </div>  
-            <h3>Category : {this.state.category}</h3>
-            <Form>
-                <FormGroup>
-                    <Label for="name">Search</Label>
-                    <Input
-                        type="text"
-                        value = {this.state.search}
-                        placeholder="Name of Painting"
-                        onChange={this.updateSearch}
-                    />
-                </FormGroup>
-            </Form>
-            
+            <GalleryButton handleClickModern={this.handleClickModern} handleClickAll={this.handleClickAll} handleClickRomantic={this.handleClickRomantic} handleClickDrawing={this.handleClickDrawing} handleClickPhotography={this.handleClickPhotography}/>
+            <FilterSearch category={this.state.category} updateSearch={this.updateSearch} search={this.state.search}/>
                 { 
                    filteredNames.map(image => {
                         return(
                             image.category==="Photography"
-                            ? <div className="galleryimg">
-                                    <Card className="card">
-                                        <CardImg className="hi" src={image.image} alt="Card image cap" />
-                                        <CardBody>
-                                        <CardTitle>{image.name}</CardTitle>
-                                        <CardSubtitle>{image.category}</CardSubtitle>
-                                        <CardText>{image.description}</CardText>
-                                        
-                                        <Button tag={Link} to={`/detail/${image.id}`}>View Detail</Button>
-                                        </CardBody>
-                                    </Card>
-                                </div>
-                            : ""
+                            ? 
+                            <Cardy key={image.id} image={image}/>    
+
+                            : 
+                            ""
                         )
                     }
                     )	
@@ -122,38 +102,16 @@ class Gallery extends React.Component {
         else if (this.state.category === "Modern") {
             return(
                 <>
-                <div className="button">
-                    <Button onClick={this.handleClickAll} color="info" className="butt">All</Button><Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
-                </div> 
-                <h3>Category : {this.state.category}</h3>
-                <Form>
-                    <FormGroup>
-                        <Label for="name">Search</Label>
-                        <Input
-                            type="text"
-                            value = {this.state.search}
-                            placeholder="Name of Painting"
-                            onChange={this.updateSearch}
-                        />
-                    </FormGroup>
-                </Form>
+                <GalleryButton handleClickModern={this.handleClickModern} handleClickAll={this.handleClickAll} handleClickRomantic={this.handleClickRomantic} handleClickDrawing={this.handleClickDrawing} handleClickPhotography={this.handleClickPhotography}/>
+                <FilterSearch category={this.state.category} updateSearch={this.updateSearch} search={this.state.search}/>
                 { 
                     filteredNames.map(image => {
                         return(
                             image.category==="Modern"
-                            ? <div className="galleryimg">
-                                    <Card className="card">
-                                        <CardImg className="hi" src={image.image} alt="Card image cap" />
-                                        <CardBody>
-                                        <CardTitle>{image.name}</CardTitle>
-                                        <CardSubtitle>{image.category}</CardSubtitle>
-                                        <CardText>{image.description}</CardText>
-                                        
-                                        <Button tag={Link} to={`/detail/${image.id}`}>View Detail</Button>
-                                        </CardBody>
-                                    </Card>
-                                </div>
-                            : ""
+                            ? 
+                            <Cardy key={image.id}  image={image}/>
+                            : 
+                            ""
                         )
                     }
                     )	
@@ -167,35 +125,15 @@ class Gallery extends React.Component {
                 <div className="button">
                     <Button onClick={this.handleClickAll} color="info" className="butt">All</Button><Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
                 </div>
-                <h3>Category : {this.state.category}</h3>
-                <Form>
-                    <FormGroup>
-                        <Label for="name">Search</Label>
-                        <Input
-                            type="text"
-                            value = {this.state.search}
-                            placeholder="Name of Painting"
-                            onChange={this.updateSearch}
-                        />
-                    </FormGroup>
-                </Form>
+                <FilterSearch category={this.state.category} updateSearch={this.updateSearch} search={this.state.search}/>
                 { 
                     filteredNames.map(image => {
                         return(
                             image.category==="Drawing"
-                            ? <div className="galleryimg">
-                                    <Card className="gallerycards">
-                                        <CardImg className="hi" src={image.image} alt="Card image cap" />
-                                        <CardBody>
-                                        <CardTitle>{image.name}</CardTitle>
-                                        <CardSubtitle>{image.category}</CardSubtitle>
-                                        <CardText>{image.description}</CardText>
-                                        
-                                        <Button tag={Link} to={`/detail/${image.id}`}>View Detail</Button>
-                                        </CardBody>
-                                    </Card>
-                                </div>
-                            : ""
+                            ? 
+                                <Cardy key={image.id} image={image}/>
+                            : 
+                            ""
                         )
                     }
                     )	
@@ -207,38 +145,16 @@ class Gallery extends React.Component {
         else if (this.state.category === "Romantic") {
             return(
                 <>
-                <div className="button">
-                    <Button onClick={this.handleClickAll} color="info" className="butt">All</Button><Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
-                </div>
-                <h3>Category : {this.state.category}</h3>
-                <Form>
-                    <FormGroup>
-                        <Label for="name">Search</Label>
-                        <Input
-                            type="text"
-                            value = {this.state.search}
-                            placeholder="Name of Painting"
-                            onChange={this.updateSearch}
-                        />
-                    </FormGroup>
-                </Form>
+                <GalleryButton handleClickModern={this.handleClickModern} handleClickAll={this.handleClickAll} handleClickRomantic={this.handleClickRomantic} handleClickDrawing={this.handleClickDrawing} handleClickPhotography={this.handleClickPhotography}/>
+                <FilterSearch category={this.state.category} updateSearch={this.updateSearch} search={this.state.search}/>
                 { 
                     filteredNames.map(image => {
                         return(
                             image.category==="Romantic"
-                            ? <div className="galleryimg">
-                                    <Card className="card">
-                                        <CardImg className="hi" src={image.image} alt="Card image cap" />
-                                        <CardBody>
-                                        <CardTitle>{image.name}</CardTitle>
-                                        <CardSubtitle>{image.category}</CardSubtitle>
-                                        <CardText>{image.description}</CardText>
-                                        
-                                        <Button tag={Link} to={`/detail/${image.id}`}>View Detail</Button>
-                                        </CardBody>
-                                    </Card>
-                                </div>
-                            : ""
+                            ? 
+                            <Cardy  key={image.id} image={image}/>
+                            : 
+                            ""
                         )
                     }
                     )	
@@ -250,38 +166,13 @@ class Gallery extends React.Component {
         else{
             return(
                 <>
-                <div className="button">
-                    <Button onClick={this.handleClickAll} color="info" className="butt">All</Button><Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
-                </div>
-                <h3>Category : None </h3>
-                <Form>
-                    <FormGroup>
-                        <Label for="name">Search</Label>
-                        <Input
-                            type="text"
-                            value = {this.state.search}
-                            placeholder="Name of Painting"
-                            onChange={this.updateSearch}
-                        />
-                    </FormGroup>
-                </Form>
+                <GalleryButton handleClickModern={this.handleClickModern} handleClickAll={this.handleClickAll} handleClickRomantic={this.handleClickRomantic} handleClickDrawing={this.handleClickDrawing} handleClickPhotography={this.handleClickPhotography}/>
+                <FilterSearch category={this.state.category} updateSearch={this.updateSearch} search={this.state.search}/>
                 { 
                     filteredNames.map(image => {
                         return(
-                            
-                             <div className="galleryimg">
-                                    <Card className="card">
-                                        <CardImg className="hi" src={image.image} alt="Card image cap" />
-                                        <CardBody>
-                                        <CardTitle>{image.name}</CardTitle>
-                                        <CardSubtitle>{image.category}</CardSubtitle>
-                                        <CardText>{image.description}</CardText>
-                                        
-                                        <Button tag={Link} to={`/detail/${image.id}`}>View Detail</Button>
-                                        </CardBody>
-                                    </Card>
-                                </div>
-                            
+                            <Cardy key={image.id} image={image}/>
+
                         )
                     }
                     )	
@@ -290,9 +181,5 @@ class Gallery extends React.Component {
             )
         }
     }
-    
-
-
 }
-
 export default Gallery

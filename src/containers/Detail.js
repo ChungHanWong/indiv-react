@@ -20,7 +20,7 @@ class Detail extends React.Component {
         let id = this.props.match.params.id
         axios.get(`http://127.0.0.1:5000/paintings/offer/${id}`)
         .then(result => {
-            console.log(result)
+            
             let name = result.data.name
             let category = result.data.category
             let description = result.data.description
@@ -76,7 +76,7 @@ class Detail extends React.Component {
     
 
     render() {
-        console.log(this.state.sold)
+        
         return(
             <>
              <Media>
@@ -85,8 +85,10 @@ class Detail extends React.Component {
                 </Media>
                 <Media body>
                     <Media heading className="mediaheading">
-                    <h1>{this.state.name} </h1> 
-                    <h3>by</h3>
+                    {this.state.name} 
+                    <br></br>
+                    ~~~
+                    <br></br>
                     <Button tag={Link} to={`/OtherProfiles/${this.state.artist_id}`}>{this.state.artist}</Button>
                     </Media>
                     <p className = "details">{this.state.description}</p>

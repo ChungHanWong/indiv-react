@@ -36,7 +36,8 @@ const ArtworkForm = ({ artwork }) => {
     }
 
     return (
-        <>  
+        <> 
+        <div>
             <div >
                 <ListGroupItem tag={Link} to={`/detail/${artwork.id}`}>
                     Name of Artwork :{artwork.name}  
@@ -61,6 +62,7 @@ const ArtworkForm = ({ artwork }) => {
                     <p className = "picSubmit">This Artwork is Sold</p>
                 </div>
             }
+        </div>
         </>
     )
 }
