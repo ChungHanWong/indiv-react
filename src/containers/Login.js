@@ -18,15 +18,18 @@ class Login extends React.Component {
 		  password: password
 		})
 		.then(response => {
-		 	console.log(response.data)
-		 	
-		 	    sessionStorage.setItem('autoken', response.data.access_token)
-		 	    sessionStorage.setItem('id', response.data.id)
+            if (response.data.message==='Email Address Does Not Exist' || response.data.message==='Wrong Password' ){
+		 	    alert(response.data.message)
+            }
+            else {
+                sessionStorage.setItem('autoken', response.data.access_token)
+                sessionStorage.setItem('id', response.data.id)
                 sessionStorage.setItem('username', response.data.username)
                 sessionStorage.setItem('email', response.data.email)
                 sessionStorage.setItem('profilepic', response.data.profilepic)
                 sessionStorage.setItem('bio', response.data.bio)
                 window.location.assign('http://localhost:3000/')
+            }
 		//  	sessionStorage.setItem('currentUserPic', `http://next-curriculum-instagram.s3.amazonaws.com/${response.data.user.profile_picture}`)
 		})
 		.catch(error => {

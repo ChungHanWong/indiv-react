@@ -94,9 +94,9 @@ class Profile extends React.Component {
         this.setState({bio : event.target.value})
     }
 
-    handleIdSold = (event) => {
-        this.setState({id_sold: event.target})
-    }
+    // handleIdSold = (event) => {
+    //     this.setState({id_sold: event.target})
+    // }
 
     handleSubmitSold = event => {
         event.preventDefault()
