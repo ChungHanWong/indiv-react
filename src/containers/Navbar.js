@@ -41,6 +41,9 @@ class navbar extends React.Component {
               <NavItem>
                 <NavLink  href="/Submit">Submit Artwork</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink  href="/Purchase">Purchase & Bidding History</NavLink>
+              </NavItem>
               <NavItem > 
                 <NavLink onClick={this.handlelogout} href="/Login">Logout</NavLink>
               </NavItem>
