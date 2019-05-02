@@ -13,6 +13,7 @@ class Detail extends React.Component {
         image:"",
         artist:"",
         artist_id:"",
+        sold : "",
     }
 
     componentDidMount()  {
@@ -27,6 +28,7 @@ class Detail extends React.Component {
             let price = result.data.price
             let artist = result.data.artist
             let artist_id = result.data.artist_id
+            let sold = result.data.sold
             this.setState({
                 name : name,
                 category :category,
@@ -35,6 +37,7 @@ class Detail extends React.Component {
                 price : price,
                 artist : artist,
                 artist_id : artist_id,
+                sold : sold,
             })
             
         })
@@ -73,7 +76,7 @@ class Detail extends React.Component {
     
 
     render() {
-        console.log(this.state.artist_id)
+        console.log(this.state.sold)
         return(
             <>
              <Media>
@@ -91,7 +94,8 @@ class Detail extends React.Component {
                     <p className = "details">Bidding Price : $ {this.state.price}</p>
                     </div>
                     <div>
-                    { sessionStorage.getItem('autoken')?
+          
+                    { sessionStorage.getItem('autoken') && this.state.sold===false?
                     <Form onSubmit={this.handleSubmitPrice}>
                         <FormGroup>
                             <Label for="name">How Much Would Like to Bid?</Label>
@@ -107,7 +111,7 @@ class Detail extends React.Component {
                         </Button>
                     </Form>
                     :
-                    ''
+                    <p>You Cannot Bid For the Following Reasons :This Artwork Has Been Sold or You Have Not Logged In</p>
                     }
                     </div>
 

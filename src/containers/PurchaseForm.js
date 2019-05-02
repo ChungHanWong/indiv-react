@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {  ListGroupItem } from 'reactstrap';
+import {  ListGroupItem,Button,Form } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
 
@@ -25,14 +25,21 @@ const PurchaseForm = ({ purchase }) => {
 
     return (
         <>
-            <ListGroupItem tag={Link} to={`/detail/${purchase.id}`}>
-                Name of Artwork :{purchase.name}  
-                Id : {purchase.id}          
-            </ListGroupItem>
-            <form onSubmit={handleSubmit} >
-                <button type="submit"  > Confirm Purchase</button>
-            </form>
+        <div >
+            <div className="purchaseForm">
+                <ListGroupItem tag={Link} to={`/detail/${purchase.id}`}>
+                    Name of Artwork :{purchase.name}  
+                    Id : {purchase.id}          
+                </ListGroupItem>
+            </div>
+            <div className="purchaseForm">
+                <Form onSubmit={handleSubmit} >
+                    <Button color="primary" type="submit"  > Confirm Purchase</Button>
+                </Form>
+            </div>
+        </div>
         </>
+        
     )
 }
 

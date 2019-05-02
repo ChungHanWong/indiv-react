@@ -27,11 +27,17 @@
 
 .galleryimg {
   display: inline-block;
-  
-  
 }
 
-.button {
+.form-control{
+  width :50%;
+}
+
+.form-group{
+  margin:30px;
+}
+
+.button  {
   margin :30px;
 }
 
@@ -62,6 +68,7 @@
 
 h2,h3,h4 {
   text-align: center;
+  margin :30px;
 }
 
 .backtogallery{
@@ -109,5 +116,15 @@ h1 {
  
 }
 
+/* Purchase */
+.biddingArtwork{
+  margin:60px;
+}
+
+/* PurchaseForm */
+.purchaseForm{
+  margin:20px;
+  display:inline-block;
+}
 
 

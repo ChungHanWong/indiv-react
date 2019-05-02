@@ -112,12 +112,14 @@ class Profile extends React.Component {
                     }
                 <div className="picSubmit">
                     <Form onSubmit={this.handleSubmit}>
-                        <div>
+                        <div className="purchaseForm">
                             <input type="file" onChange = {this.fileSelectedHandler} />
                         </div>
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
+                        <div className="purchaseForm">
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
+                        </div>
                     </Form>
                 </div>
                 </Media>
@@ -138,13 +140,13 @@ class Profile extends React.Component {
                 
                 
                 <div class="listOfArtwork">
+                    <h3>List of Artist's Artwork</h3>
                     {this.state.artwork.map(art =>
                         <>
-                        {art.sold === false?
-                            <ArtworkForm artwork={art} />
-                        :
-                        ""
-                        }
+                        
+                        <ArtworkForm artwork={art} />
+                        
+
                         </>
                     )
                     }

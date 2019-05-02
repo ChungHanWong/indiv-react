@@ -253,7 +253,7 @@ class Gallery extends React.Component {
                 <div className="button">
                     <Button onClick={this.handleClickAll} color="info" className="butt">All</Button><Button onClick={this.handleClickModern} color="primary" className="butt">Modern</Button><Button onClick={this.handleClickRomantic} color="success" className="butt">Romantic</Button><Button onClick={this.handleClickDrawing} color='warning' className="butt">Drawing</Button><Button onClick={this.handleClickPhotography} color='danger' className="butt">Photography</Button>
                 </div>
-                <h3>Category : {this.state.category}</h3>
+                <h3>Category : None </h3>
                 <Form>
                     <FormGroup>
                         <Label for="name">Search</Label>

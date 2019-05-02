@@ -10,6 +10,7 @@ class createListOfPurchase extends React.Component {
     this.input = React.createRef();
     this.state = {
         purchased:[],
+        bid : [],
     }
     }
 
@@ -27,21 +28,19 @@ class createListOfPurchase extends React.Component {
                             { name, image, id, paid }
                         ]
                     })
+                }
+                for (let i =0;i<response.data.bid.length;i++){
+                    const { name, image, id, price} = response.data.bid[i]
+                    this.setState({
+                        bid: [
+                            ...this.state.bid,
+                            { name, image, id,price }
+                        ]
+                    })    
+                }
                     // let newName = response.data.purchase[i].name
-                    // let newImage = response.data.purchase[i].image
-                    // let newId = response.data.purchase[i].id
-                    // let newPaid = response.data.purchase[i].paid
                     // let obj = {}
                     // obj['name'] = newName
-                    // obj['image'] = newImage
-                    // obj['id'] = newId
-                    // obj['paid'] = newPaid
-                    // let newnew= this.state.purchased
-                    // newnew.push(obj)
-                    // this.setState({purchased: newnew})
-                }
-                
-                
             })
             .catch(error => {    
                 console.log('ERROR: ', error)
@@ -56,33 +55,54 @@ class createListOfPurchase extends React.Component {
   		console.log(this.state.purchased)
 	    return (
 	    	<>
-            {
-            this.state.purchased.map(pur =>
-                <>
-                {pur.paid===false?
-                <>
-                    <h3>Pending Purchases</h3>
-                    <PurchaseForm purchase={pur} /> 
-                </>
-                :
-                ''}
-                {pur.paid ===true?
+            <div className="biddingArtwork">
+                <h3>Bidding Artwork</h3>
+                {this.state.bid.map(bid =>
                     <>
-                    <h3>Successful Purchases</h3>
-                    <ListGroupItem tag={Link} to={`/detail/${pur.id}`}>
-                        Name of Artwork :{pur.name}  
-                        Id : {pur.id}
+                        <ListGroupItem tag={Link} to={`/detail/${bid.id}`}>
+                            Name of Artwork :{bid.name}  
+                            Id : {bid.id}
+                            Bidding Price : {bid.price}
+                        </ListGroupItem>
+                    </>
+                )}
+            </div>
+            <div className="biddingArtwork">
+                <h3>Pending Purchases</h3>
+                {
+                this.state.purchased.map(pur =>
+                    <>
+                    {pur.paid===false?
+                    <>
                         
-                    </ListGroupItem>
-                   
+                        <PurchaseForm purchase={pur} /> 
                     </>
                     :
-                    ''
+                    ''}
+                    </>
+                )
                 }
-                </>
-	    	)
-            }
-	    	</>
+            </div>
+            <div className="biddingArtwork">
+                <h3>Successful Purchases</h3>
+                {this.state.purchased.map(pur =>
+                    <>
+                    {pur.paid ===true?
+                        <>
+                        <ListGroupItem tag={Link} to={`/detail/${pur.id}`}>
+                            Name of Artwork :{pur.name}  
+                            Id : {pur.id}
+                            
+                        </ListGroupItem>
+                    
+                        </>
+                        :
+                        ''
+                    }
+                    </>
+                )}
+            </div>
+	        </>	
 	    )
   	}
 }
