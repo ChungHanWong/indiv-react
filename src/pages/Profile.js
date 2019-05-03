@@ -50,7 +50,7 @@ class Profile extends React.Component {
         let fd = new FormData();
         fd.append('picture', picture )
         fd.append('username', username)
-        axios.post("https://aqueous-journey-66824.herokuapp.com/edit", fd, {headers: {
+        axios.post("https://aqueous-journey-66824.herokuapp.com/edit/", fd, {headers: {
             'Content-Type': 'multipart/form-data'
           }})
         .then(response => {
