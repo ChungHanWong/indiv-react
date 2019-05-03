@@ -18,7 +18,7 @@ class Detail extends React.Component {
 
     componentDidMount()  {
         let id = this.props.match.params.id
-        axios.get(`http://127.0.0.1:5000/paintings/offer/${id}`)
+        axios.get(`https://aqueous-journey-66824.herokuapp.com/paintings/offer/${id}`)
         .then(result => {
             
             let name = result.data.name
@@ -54,7 +54,7 @@ class Detail extends React.Component {
         fd.append('description', description )
         fd.append('price', price)
         fd.append('id', id)
-        axios.post("http://127.0.0.1:5000/paintings/bid", fd, {headers: {
+        axios.post("https://aqueous-journey-66824.herokuapp.com/paintings/bid", fd, {headers: {
             'Content-Type': 'multipart/form-data'
             }})
         .then(response => {

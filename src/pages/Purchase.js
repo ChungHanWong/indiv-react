@@ -15,7 +15,7 @@ class createListOfPurchase extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/sold/purchase', 
+        axios.get('https://aqueous-journey-66824.herokuapp.com/sold/purchase', 
             { headers: { Authorization: `Bearer ${sessionStorage.getItem('autoken')}` } })
             .then(response => {
                 

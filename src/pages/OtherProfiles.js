@@ -16,7 +16,7 @@ class OtherProfiles extends React.Component {
 
     componentDidMount() {
         let id = this.props.match.params.id
-        axios.get(`http://localhost:5000/profile/others/${id}` )
+        axios.get(`https://aqueous-journey-66824.herokuapp.com/profile/others/${id}` )
             .then(response => {
                 console.log(response.data)
                 this.setState({username:response.data.username})

@@ -10,12 +10,12 @@ const PurchaseForm = ({ purchase }) => {
         console.log(purchase.id)
         let fd = new FormData();
         fd.append('id', purchase.id )
-        axios.post("http://127.0.0.1:5000/sold/paid", fd)
+        axios.post("https://aqueous-journey-66824.herokuapp.com/paid", fd)
         .then(response => {
             console.log(response.data.message)
             
             
-            window.location.assign('http://localhost:3000/Braintree')
+            window.location.assign('https://ancient-springs-26000.herokuapp.com//Braintree')
         })
         .catch(error => {
         alert("error uploading")

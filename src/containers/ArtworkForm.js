@@ -8,7 +8,7 @@ const ArtworkForm = ({ artwork }) => {
         event.preventDefault()
         let fd = new FormData();
         fd.append('id', artwork.id )
-        axios.post("http://127.0.0.1:5000/sold/", fd)
+        axios.post("https://aqueous-journey-66824.herokuapp.com/sold/", fd)
         .then(response => {
             console.log(response.data)
             window.location.reload()
@@ -24,7 +24,7 @@ const ArtworkForm = ({ artwork }) => {
         alert("Confirm Delete?")
         let fd = new FormData();
         fd.append('id', artwork.id )
-        axios.post("http://127.0.0.1:5000/paintings/delete", fd)
+        axios.post("https://aqueous-journey-66824.herokuapp.com/paintings/delete", fd)
         .then(response => {
             console.log(response.data)
             window.location.reload()

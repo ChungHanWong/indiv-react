@@ -15,7 +15,7 @@ class Gallery extends React.Component {
     }
 
     componentDidMount()  {
-        axios.get('http://127.0.0.1:5000/paintings/offer')
+        axios.get('https://aqueous-journey-66824.herokuapp.com/paintings/offer')
         .then(result => {
             
             for (let i =0;i<result.data.length;i++){

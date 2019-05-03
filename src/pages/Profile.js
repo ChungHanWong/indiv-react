@@ -19,7 +19,7 @@ class Profile extends React.Component {
     }
     }
     componentDidMount() {
-        axios.get('http://localhost:5000/profile/', 
+        axios.get('https://aqueous-journey-66824.herokuapp.com/profile/', 
             { headers: { Authorization: `Bearer ${sessionStorage.getItem('autoken')}` } })
             .then(response => {
                 let propic = sessionStorage.getItem('profilepic')
@@ -50,7 +50,7 @@ class Profile extends React.Component {
         let fd = new FormData();
         fd.append('picture', picture )
         fd.append('username', username)
-        axios.post("http://127.0.0.1:5000/profile/edit", fd, {headers: {
+        axios.post("https://aqueous-journey-66824.herokuapp.com/edit", fd, {headers: {
             'Content-Type': 'multipart/form-data'
           }})
         .then(response => {
@@ -70,7 +70,7 @@ class Profile extends React.Component {
         let fd = new FormData();
         fd.append('bio', bio )
         fd.append('username', username)
-        axios.post("http://127.0.0.1:5000/profile/editbio", fd, {headers: {
+        axios.post("https://aqueous-journey-66824.herokuapp.com/editbio", fd, {headers: {
             'Content-Type': 'multipart/form-data'
             }})
         .then(response => {

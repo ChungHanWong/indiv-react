@@ -14,7 +14,7 @@ class SignUp extends React.Component {
     handleSubmit = event => {
     	let {username, emailaddress, password} = this.state;
 	    event.preventDefault();
-	    axios.post("http://127.0.0.1:5000/users/", {
+	    axios.post("https://aqueous-journey-66824.herokuapp.com/users/", {
 		  username: username,
 		  email: emailaddress,
 		  password: password,
@@ -31,7 +31,7 @@ class SignUp extends React.Component {
                 sessionStorage.setItem('profilepic', response.data.profilepic)
                 sessionStorage.setItem('bio', response.data.bio)
                 alert(response.data.message)
-                window.location.assign('http://localhost:3000/')
+                window.location.assign('https://ancient-springs-26000.herokuapp.com')
             }
             
         })

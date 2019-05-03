@@ -25,7 +25,7 @@ class Submit extends React.Component {
     fd.append('category', category)
     fd.append('description', description)
     fd.append('id', userid)
-    axios.post("http://127.0.0.1:5000/paintings/paintingsubmit", fd, {headers: {
+    axios.post("https://aqueous-journey-66824.herokuapp.com/paintings/paintingsubmit", fd, {headers: {
         'Content-Type': 'multipart/form-data'
       }})
     .then(response => {
