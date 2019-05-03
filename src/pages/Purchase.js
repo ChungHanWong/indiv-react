@@ -47,10 +47,6 @@ class createListOfPurchase extends React.Component {
             })
     }
 
-
-
-    
-
     render(){
   		
 	    return (

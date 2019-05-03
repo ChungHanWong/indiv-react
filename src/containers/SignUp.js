@@ -31,7 +31,7 @@ class SignUp extends React.Component {
                 sessionStorage.setItem('profilepic', response.data.profilepic)
                 sessionStorage.setItem('bio', response.data.bio)
                 alert(response.data.message)
-                window.location.reload()
+                window.location.assign('http://localhost:3000/')
             }
             
         })
@@ -58,6 +58,7 @@ class SignUp extends React.Component {
         console.log(this.state.username)
         return(
             <>
+                <div className="backtogallery" >
                 <Form onSubmit={this.handleSubmit}>
                     <h1> SignUp </h1>
                     <hr></hr>
@@ -92,6 +93,7 @@ class SignUp extends React.Component {
                         Submit
                     </Button>
                 </Form>
+                </div>
                 <div className="backtogallery">
                     <Button  color="link" tag={Link} to={`/Login`}>Already A Member? Login Now</Button>
                 </div>

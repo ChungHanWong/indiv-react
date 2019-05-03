@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import ImageUploader from 'react-images-upload';
+
 
 class Submit extends React.Component {
     constructor(props) {
@@ -12,13 +12,9 @@ class Submit extends React.Component {
              description : '' ,
              picture : null,
              userid : sessionStorage.getItem('id'), };
-        //  this.onDrop = this.onDrop.bind(this);
+        
     }
-    // onDrop(picture) {
-    //     this.setState({
-    //         pictures: this.state.pictures.concat(picture),
-    //     });
-    // }
+
   
     handleSubmit = event => {
     event.preventDefault()
@@ -65,6 +61,7 @@ class Submit extends React.Component {
                 <Form onSubmit={this.handleSubmit}>
                     <h1> Painting </h1>
                     <hr></hr>
+                    <div className="backtogallery" >
                     <FormGroup>
                         <Label for="name">Name</Label>
                         <Input
@@ -101,15 +98,9 @@ class Submit extends React.Component {
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
+                    </div>
                 </Form>
-                
-                <ImageUploader
-                withIcon={true}
-                buttonText='Choose images'
-                onChange={this.onDrop}
-                imgExtension={['.jpg', '.gif', '.png', '.gif','.jpeg']}
-                maxFileSize={5242880}
-                />
+            
             
           </div>
         );

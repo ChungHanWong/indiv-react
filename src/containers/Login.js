@@ -55,6 +55,7 @@ class Login extends React.Component {
                 <Form onSubmit={this.handleSubmit}>
                     <h1> Login </h1>
                     <hr></hr>
+                    <div className="backtogallery" >
                     <FormGroup>
                         <Label for="name">Email</Label>
                         <Input
@@ -76,7 +77,9 @@ class Login extends React.Component {
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
+                    </div>
                 </Form>
+               
 
                 <div className="backtogallery">
                 

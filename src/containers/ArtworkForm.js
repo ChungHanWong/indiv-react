@@ -37,13 +37,13 @@ const ArtworkForm = ({ artwork }) => {
 
     return (
         <> 
-        <div>
-            <div >
+        <div className='artworkListInner' >
+            <div  >
                 <ListGroupItem tag={Link} to={`/detail/${artwork.id}`}>
-                    Name of Artwork :{artwork.name}  
-                    Id : {artwork.id}    
-                    Price : {artwork.price}
-                    Bidder's Name : {artwork.bidder_name}      
+                    <span>Name of Artwork :{artwork.name}  </span>  
+                    <span>Price : ${artwork.price}   </span>     
+                    <span>Bidder's Name : {artwork.bidder_name}   </span> 
+                    <img alt="pic" className = "imagelists" src ={artwork.image}/>     
                 </ListGroupItem>
             </div>
             <div className="purchaseForm">

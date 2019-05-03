@@ -10,6 +10,14 @@
   margin-top : 70px;
 }
 
+.col {
+  margin :40px;
+  background-color :rgb(79, 104, 130);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color : white;
+  padding : 20px;
+}
+
 
 /* This is for Gallery */
 .hi{
@@ -30,11 +38,14 @@
 }
 
 .form-control{
-  width :50%;
+  width :60%;
+  margin : auto;
+  border-radius: 30px;
 }
 
 .form-group{
   margin:30px;
+  text-align: center;
 }
 
 .button  {
@@ -96,6 +107,7 @@ h1 {
   text-align: center;
   margin-top: 40px;
   font-size : 60px;
+  
 }
 
 .profilemodal{
@@ -103,8 +115,29 @@ h1 {
 }
 
 .listOfArtwork{
-  margin : 70px;
-  
+  margin : 70px; 
+}
+
+
+span {
+  margin : 7px;
+}
+
+
+
+.artworkListInner {
+  display : inline-block;
+  width : 45%;
+  margin : 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.imagelists{
+  width :250px;
+  height :250px;
+  border-radius : 10px;
+  margin : 80px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* Homepage */

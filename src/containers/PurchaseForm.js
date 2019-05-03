@@ -34,7 +34,7 @@ const PurchaseForm = ({ purchase }) => {
             </div>
             <div className="purchaseForm">
                 <Form onSubmit={handleSubmit} >
-                    <Button color="primary" type="submit"  > Confirm Purchase</Button>
+                    <Button color="primary" type="submit"> Confirm Purchase</Button>
                 </Form>
             </div>
         </div>

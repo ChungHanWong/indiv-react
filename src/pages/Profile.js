@@ -33,11 +33,11 @@ class Profile extends React.Component {
                 this.setState({bio:bi})
                 this.setState({profilepic:propic})
                 for (let i =0;i<response.data.artwork.length;i++){
-                    const { name, price, id, bidder_name,sold } = response.data.artwork[i]
+                    const { name, price, id, bidder_name,sold,image } = response.data.artwork[i]
                     this.setState({
                         artwork: [
                             ...this.state.artwork,
-                            { name, price, id, bidder_name,sold }
+                            { name, price, id, bidder_name,sold,image }
                         ]
                     })
                 }
