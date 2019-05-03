@@ -5,15 +5,15 @@ import Submit from './containers/submit'
 import Jumbotron from './components/Jumbotron'
 import SignUp from './containers/SignUp'
 import Login from './containers/Login'
-import Gallery from './containers/Gallery'
-import Detail from './containers/Detail'
+import Gallery from './pages/Gallery'
+import Detail from './pages/Detail'
 import Navbar from './containers/Navbar'
 import Profile from './pages/Profile'
 import OtherProfiles from './pages/OtherProfiles'
 import Homepage from './pages/Homepage'
 import Braintree from './pages/btnew'
 import Purchase from './pages/Purchase'
-import Experiment from './containers/experiment'
+
 
 
 class App extends React.Component {
@@ -38,7 +38,7 @@ class App extends React.Component {
         <Route exact path="/OtherProfiles/:id" component={OtherProfiles} />
         <Route exact path="/Braintree" component={Braintree} />
         <Route exact path="/Purchase" component={Purchase} />
-        <Route exact path="/experiment" component={Experiment} />
+
       </Switch>
       </>
     )

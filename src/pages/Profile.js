@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Media,Button } from 'reactstrap';
 import {  Form } from 'reactstrap';
-import nopic from './no_pic.gif'
+import nopic from '../pages/no_pic.gif'
 import Modal from '../containers/Modal'
 
 

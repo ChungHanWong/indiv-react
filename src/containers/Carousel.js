@@ -6,9 +6,9 @@ import {
   CarouselIndicators,
   CarouselCaption
 } from 'reactstrap';
-import firstpic from './romantic1.jpg'
-import secondpic from './impressionism.jpg'
-import thirdpic from './porto.jpeg'
+import firstpic from '../Images/romantic1.jpg'
+import secondpic from '../Images/impressionism.jpg'
+import thirdpic from '../Images/porto.jpeg'
 
 const items = [
   {
