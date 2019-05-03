@@ -4,10 +4,7 @@ import { Media,Button } from 'reactstrap';
 import {  Form } from 'reactstrap';
 import nopic from '../pages/no_pic.gif'
 import Modal from '../containers/Modal'
-
-
 import ArtworkForm from '../containers/ArtworkForm'
-
 
 class Profile extends React.Component {
     constructor(props){
@@ -102,7 +99,7 @@ class Profile extends React.Component {
         return(
             <>
                 <h1>Profile Page</h1>
-                <Media>
+                <Media >
                 <Media left href="#">
                     {this.state.profilepic === 'http://hanagram.s3.amazonaws.com/None' ?
                     <Media className="mediaprofilepic" src = {nopic} alt="Generic placeholder image" />

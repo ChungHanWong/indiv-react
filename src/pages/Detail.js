@@ -99,18 +99,22 @@ class Detail extends React.Component {
           
                     { sessionStorage.getItem('autoken') && this.state.sold===false?
                     <Form onSubmit={this.handleSubmitPrice}>
-                        <FormGroup>
-                            <Label for="name">How Much Would Like to Bid?</Label>
-                            <Input
-                                type="text"
-                                name="price"
-                                placeholder="$100"
-                                onChange={this.handlePriceInput}
-                            />
-                        </FormGroup>
-                        <Button color="warning" variant="primary" type="submit">
-                            Submit
-                        </Button>
+                        <div className="purchaseForm">  
+                            <FormGroup>
+                                <Label for="name">How Much Would Like to Bid?</Label>
+                                <Input
+                                    type="text"
+                                    name="price"
+                                    placeholder="$100"
+                                    onChange={this.handlePriceInput}
+                                />
+                            </FormGroup>
+                        </div>
+                        <div className="purchaseForm">  
+                            <Button color="warning" variant="primary" type="submit">
+                                Bid 
+                            </Button>
+                        </div>
                     </Form>
                     :
                     <p>You Cannot Bid For the Following Reasons :This Artwork Has Been Sold or You Have Not Logged In</p>

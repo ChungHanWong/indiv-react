@@ -74,7 +74,7 @@ class Submit extends React.Component {
                     <FormGroup>
                         <Label for="category">Select Category</Label>
                         <Input type="select" name="category" onChange={this.handleCategoryInput} >
-                            <option>Baroque</option>
+                            <option> ---- </option>
                             <option>Romantic</option>
                             <option>Modern</option>
                             <option>Drawing</option>
