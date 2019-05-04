@@ -7,8 +7,9 @@ const listOfBid = ({pur}) => {
        <>
         <div>
            <ListGroupItem   tag={Link} to={`/detail/${pur.id}`}>
-                Name of Artwork :{pur.name}  
-                Id : {pur.id}
+                <span>Name of Artwork :{pur.name} </span> 
+                <span>Id : {pur.id} </span> 
+                <span>Price : {pur.price} </span> 
             </ListGroupItem>
         </div>
        </>
