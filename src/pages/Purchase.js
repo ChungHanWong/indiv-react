@@ -21,11 +21,11 @@ class createListOfPurchase extends React.Component {
                 
                 // this.setState({purchased:response.data.purchase})
                 for (let i =0;i<response.data.purchase.length;i++){
-                    const { name, image, id, paid } = response.data.purchase[i]
+                    const { name, image, id, paid,price } = response.data.purchase[i]
                     this.setState({
                         purchased: [
                             ...this.state.purchased,
-                            { name, image, id, paid }
+                            { name, image, id, paid,price }
                         ]
                     })
                 }

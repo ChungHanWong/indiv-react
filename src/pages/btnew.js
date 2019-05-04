@@ -20,7 +20,7 @@ class braintree extends React.Component {
     // Get a client token for authorization from your server
     axios.get('https://aqueous-journey-66824.herokuapp.com/braintree/')
         .then(result => {
-            console.log(result.data)
+            
             this.setState({clientToken:result.data.client_token})
         })
 
@@ -33,15 +33,14 @@ class braintree extends React.Component {
   async buy() {
     // Send the nonce to your server
     let nounce  = await this.instance.requestPaymentMethod();
-    console.log(nounce.nonce)
+    
   
     axios.post("https://aqueous-journey-66824.herokuapp.com/braintree/checkouts", {
         payment_method_nonce : nounce.nonce,
         amount : this.state.value,
       })
     .then(response => {
-        console.log(response.data)
-        alert(response.data)
+        
         this.setState({transacted: true})
         this.setState({message : response.data.message})
         this.setState({transac : response.data.transac})
@@ -57,7 +56,7 @@ class braintree extends React.Component {
   }
  
   render() {
-    console.log(this.state.value)
+    
     if (!this.state.clientToken) {
       return (
         <div>
