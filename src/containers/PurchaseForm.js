@@ -7,14 +7,10 @@ import { Link } from 'react-router-dom'
 const PurchaseForm = ({ purchase }) => {
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log(purchase.id)
         let fd = new FormData();
         fd.append('id', purchase.id )
         axios.post("https://aqueous-journey-66824.herokuapp.com/sold/paid", fd)
         .then(response => {
-            console.log(response.data.message)
-            
-            
             window.location.assign('https://ancient-springs-26000.herokuapp.com/Braintree')
         })
         .catch(error => {

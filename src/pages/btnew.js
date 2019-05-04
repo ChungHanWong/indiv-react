@@ -1,4 +1,3 @@
-
 import React from "react";
 import DropIn from "braintree-web-drop-in-react";
 import axios from 'axios';

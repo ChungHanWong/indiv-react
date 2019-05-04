@@ -67,7 +67,7 @@ class Gallery extends React.Component {
         
         let filteredNames = this.state.images.filter(
             (image) => {
-                return image.name.toLowerCase().indexOf(this.state.search) !== -1
+                return image.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
             }
         )
         if(this.state.loading===true){
