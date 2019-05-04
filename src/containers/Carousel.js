@@ -14,17 +14,17 @@ const items = [
   {
     src : firstpic,
     altText: 'Slide 1',
-    caption: 'Slide 1'
+    caption: 'Meadow by Natalie Laura'
   },
   {
     src : secondpic,
     altText: 'Slide 2',
-    caption: 'Slide 2'
+    caption: 'Copenhagen by Chung Yew'
   },
   {
     src : thirdpic,
     altText: 'Slide 3',
-    caption: 'Slide 3'
+    caption: 'Porto by Ethan Wong'
   }
 ];
 

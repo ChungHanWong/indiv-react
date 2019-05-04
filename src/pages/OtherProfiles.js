@@ -2,27 +2,39 @@ import React from 'react';
 import axios from 'axios';
 import { Media } from 'reactstrap';
 import nopic from './no_pic.gif'
-import { Link } from 'react-router-dom'
-import {  ListGroupItem } from 'reactstrap';
+import ArtworkForm from '../containers/ArtworkForm'
+import Loader from '../components/Loader'
 
 class OtherProfiles extends React.Component {
     state = {
         username:'',
         profilepic:'',
         bio : '',
-        artwork : '',
-
+        artwork : [],
+        loading : true,
     }
 
     componentDidMount() {
         let id = this.props.match.params.id
         axios.get(`https://aqueous-journey-66824.herokuapp.com/profile/others/${id}` )
             .then(response => {
-                console.log(response.data)
+                
                 this.setState({username:response.data.username})
                 this.setState({bio:response.data.bio})
                 this.setState({profilepic:response.data.profilepic})
-                this.setState({artwork:response.data.artwork})
+                // this.setState({artwork:response.data.artwork})
+
+                for (let i =0;i<response.data.artwork.length;i++){
+                    const { name, price,bidder_name,sold,image } = response.data.artwork[i]
+                    this.setState({
+                        artwork: [
+                            ...this.state.artwork,
+                            { name, price, bidder_name,sold,image }
+                        ]
+                    })
+                }
+
+                this.setState({loading : false})
                 
             })
             .catch(error => {    
@@ -30,51 +42,53 @@ class OtherProfiles extends React.Component {
             })
     }
 
-    createList = () => {
-        let artwork = this.state.artwork
-        let work = []
-        
-        for (let i = 0; i < artwork.length; i++) {
-            work.push(<ListGroupItem tag={Link} to={`/detail/${artwork[i].id}`}>Name of Artwork :{artwork[i].name} Bidding Price : ${artwork[i].price} Bidder's Name : {artwork[i].bidder_name}</ListGroupItem>)
-        }
-        return work
-    }
 
     render(){
-        console.log(this.state.bio)
-        return(
-            <>
-            <h1>Profile Page</h1>
-                <Media>
-                <Media left href="#">
-                    {this.state.profilepic === 'http://hanagram.s3.amazonaws.com/None' ?
-                    <Media className="mediaprofilepic" src = {nopic} alt="Generic placeholder image" />
-                    :
-                    <Media className="mediaprofilepic" src = {this.state.profilepic} alt="Generic placeholder image" />
-                    }
-               
-                </Media>
-                <Media body>
-                    <Media heading className="mediaheading">
-                    <h1>{this.state.username}</h1>
-                    </Media>
-                    {this.state.bio === null ?
-                    <p className = "details">This Artist Has Nothing To Say</p>
-                    :
-                    <p className = "details">{this.state.bio}</p>
-                    }
+        if(this.state.loading===true) {
+            return(
+                <>
+                    <Loader/>
+                </>
+            )
+        }
+        else {
+            return(
+                <>
+                <h1>Profile Page</h1>
+                    <Media>
+                    <Media left href="#">
+                        {this.state.profilepic === 'http://hanagram.s3.amazonaws.com/None' ?
+                        <Media className="mediaprofilepic" src = {nopic} alt="Generic placeholder image" />
+                        :
+                        <Media className="mediaprofilepic" src = {this.state.profilepic} alt="Generic placeholder image" />
+                        }
                 
                     </Media>
-                </Media>
-                
-                
-                <div class="listOfArtwork">
-                <h3>Artist's Artwork</h3>
-                    {this.createList()}
+                    <Media body>
+                        <Media heading className="mediaheading">
+                        {this.state.username}
+                        </Media>
+                        {this.state.bio === null ?
+                        <p className = "details">This Artist Has Nothing To Say</p>
+                        :
+                        <p className = "details">{this.state.bio}</p>
+                        }
                     
-                </div>
-            </>
-        )
+                        </Media>
+                    </Media>
+                    
+                    
+                    <div className="listOfArtwork">
+                        <h3>List of Artist's Artwork</h3>
+                        {this.state.artwork.map(art =>
+                            <ArtworkForm key={art.name} artwork={art} />
+                        )
+                        }
+                        
+                    </div>
+                </>
+            )
+        }
     }
 }
 

@@ -5,6 +5,7 @@ import {  Form } from 'reactstrap';
 import nopic from '../pages/no_pic.gif'
 import Modal from '../containers/Modal'
 import ArtworkForm from '../containers/ArtworkForm'
+import Loader from  '../components/Loader'
 
 class Profile extends React.Component {
     constructor(props){
@@ -16,6 +17,7 @@ class Profile extends React.Component {
         bio : '',
         picture : null,
         artwork : [],
+        loading : true,
     }
     }
     componentDidMount() {
@@ -38,6 +40,7 @@ class Profile extends React.Component {
                         ]
                     })
                 }
+                this.setState({loading:false})
             })
             .catch(error => {    
                 console.log('ERROR: ', error)
@@ -95,57 +98,65 @@ class Profile extends React.Component {
 
     
     render() {
-        
-        return(
-            <>
-                <h1>Profile Page</h1>
-                <Media >
-                <Media left href="#">
-                    {this.state.profilepic === 'http://hanagram.s3.amazonaws.com/None' ?
-                    <Media className="mediaprofilepic" src = {nopic} alt="Generic placeholder image" />
-                    :
-                    <Media className="mediaprofilepic" src = {this.state.profilepic} alt="Generic placeholder image" />
+        if(this.state.loading===true){
+            return(
+                <>
+                    <Loader/>
+                </>
+            )
+        }
+        else{
+            return(
+                <>
+                    <h1>Profile Page</h1>
+                    <Media >
+                    <Media left href="#">
+                        {this.state.profilepic === 'http://hanagram.s3.amazonaws.com/None' ?
+                        <Media className="mediaprofilepic" src = {nopic} alt="Generic placeholder image" />
+                        :
+                        <Media className="mediaprofilepic" src = {this.state.profilepic} alt="Generic placeholder image" />
 
-                    }
-                <div className="picSubmit">
-                    <Form onSubmit={this.handleSubmit}>
-                        <div className="purchaseForm">
-                            <input type="file" onChange = {this.fileSelectedHandler} />
-                        </div>
-                        <div className="purchaseForm">
-                            <Button variant="primary" type="submit">
-                                Submit
-                            </Button>
-                        </div>
-                    </Form>
-                </div>
-                </Media>
-                <Media body>
-                    <Media heading className="mediaheading">
-                    {this.state.username}
-                    </Media>
-                    {this.state.bio === 'null'  ?
-                    <p className = "details">Write Something About Yourself</p>
-                    :
-                    <p className = "details">{this.state.bio}</p>
-                    }
-                    <div className='profilemodal'>
-                    <Modal editingbio={this.editingbio} handleSubmitBio={this.handleSubmitBio} />
+                        }
+                    <div className="picSubmit">
+                        <Form onSubmit={this.handleSubmit}>
+                            <div className="purchaseForm">
+                                <input type="file" onChange = {this.fileSelectedHandler} />
+                            </div>
+                            <div className="purchaseForm">
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
+                            </div>
+                        </Form>
                     </div>
                     </Media>
-                </Media>
-                
-                
-                <div className="listOfArtwork">
-                    <h3>List of Artist's Artwork</h3>
-                    {this.state.artwork.map(art =>
-                        <ArtworkForm key={art.name} artwork={art} />
-                    )
-                    }
+                    <Media body>
+                        <Media heading className="mediaheading">
+                        {this.state.username}
+                        </Media>
+                        {this.state.bio === 'null'  ?
+                        <p className = "details">Write Something About Yourself</p>
+                        :
+                        <p className = "details">{this.state.bio}</p>
+                        }
+                        <div className='profilemodal'>
+                        <Modal editingbio={this.editingbio} handleSubmitBio={this.handleSubmitBio} />
+                        </div>
+                        </Media>
+                    </Media>
                     
-                </div>
-            </>
-        )
+                    
+                    <div className="listOfArtwork">
+                        <h3>List of Artist's Artwork</h3>
+                        {this.state.artwork.map(art =>
+                            <ArtworkForm key={art.name} artwork={art} />
+                        )
+                        }
+                        
+                    </div>
+                </>
+            )
+        }
     }
     
 }

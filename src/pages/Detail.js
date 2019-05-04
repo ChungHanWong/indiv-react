@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Media,Button,Form,FormGroup,Label,Input } from 'reactstrap';
 import { Link } from 'react-router-dom'
-
+import Loader from  '../components/Loader'
 
 class Detail extends React.Component {
     state = {
@@ -14,13 +14,13 @@ class Detail extends React.Component {
         artist:"",
         artist_id:"",
         sold : "",
+        loading : true,
     }
 
     componentDidMount()  {
         let id = this.props.match.params.id
         axios.get(`https://aqueous-journey-66824.herokuapp.com/paintings/offer/${id}`)
         .then(result => {
-            
             let name = result.data.name
             let category = result.data.category
             let description = result.data.description
@@ -39,7 +39,7 @@ class Detail extends React.Component {
                 artist_id : artist_id,
                 sold : sold,
             })
-            
+            this.setState({loading:false})
         })
         .catch(error => {    
             console.log('ERROR: ', error)
@@ -76,58 +76,66 @@ class Detail extends React.Component {
     
 
     render() {
-        
-        return(
-            <>
-             <Media>
-                <Media left href="#">
-                    <Media className="mediaimg" src = {this.state.image} alt="Generic placeholder image" />
-                </Media>
-                <Media body>
-                    <Media heading className="mediaheading">
-                    {this.state.name} 
-                    <br></br>
-                    ~~~
-                    <br></br>
-                    <Button tag={Link} to={`/OtherProfiles/${this.state.artist_id}`}>{this.state.artist}</Button>
+        if(this.state.loading===true){
+            return(
+                <>
+                    <Loader/>
+                </>
+            )
+        }
+        else {
+            return(
+                <>
+                <Media>
+                    <Media left href="#">
+                        <Media className="mediaimg" src = {this.state.image} alt="Generic placeholder image" />
                     </Media>
-                    <p className = "details">{this.state.description}</p>
-                    <div>
-                    <p className = "details">Bidding Price : $ {this.state.price}</p>
-                    </div>
-                    <div>
-          
-                    { sessionStorage.getItem('autoken') && this.state.sold===false?
-                    <Form onSubmit={this.handleSubmitPrice}>
-                        <div className="purchaseForm">  
-                            <FormGroup>
-                                <Label for="name">How Much Would Like to Bid?</Label>
-                                <Input
-                                    type="text"
-                                    name="price"
-                                    placeholder="$100"
-                                    onChange={this.handlePriceInput}
-                                />
-                            </FormGroup>
+                    <Media body>
+                        <Media heading className="mediaheading">
+                        {this.state.name} 
+                        <br></br>
+                        ~~~
+                        <br></br>
+                        <Button tag={Link} to={`/OtherProfiles/${this.state.artist_id}`}>{this.state.artist}</Button>
+                        </Media>
+                        <p className = "details">{this.state.description}</p>
+                        <div>
+                        <p className = "details">Bidding Price : $ {this.state.price}</p>
                         </div>
-                        <div className="purchaseForm">  
-                            <Button color="warning" variant="primary" type="submit">
-                                Bid 
-                            </Button>
+                        <div>
+            
+                        { sessionStorage.getItem('autoken') && this.state.sold===false?
+                        <Form onSubmit={this.handleSubmitPrice}>
+                            <div className="purchaseForm">  
+                                <FormGroup>
+                                    <Label for="name">How Much Would Like to Bid?</Label>
+                                    <Input
+                                        type="text"
+                                        name="price"
+                                        placeholder="$100"
+                                        onChange={this.handlePriceInput}
+                                    />
+                                </FormGroup>
+                            </div>
+                            <div className="purchaseForm">  
+                                <Button color="warning" variant="primary" type="submit">
+                                    Bid 
+                                </Button>
+                            </div>
+                        </Form>
+                        :
+                        <p>You Cannot Bid For the Following Reasons :This Artwork Has Been Sold or You Have Not Logged In</p>
+                        }
                         </div>
-                    </Form>
-                    :
-                    <p>You Cannot Bid For the Following Reasons :This Artwork Has Been Sold or You Have Not Logged In</p>
-                    }
-                    </div>
 
-                    </Media>
-            </Media>
-            <div className = "backtogallery">
-                <Button  color="info" tag={Link} to={`/Gallery`}>Back to Gallery</Button>
-            </div>
-            </>
-        )
+                        </Media>
+                </Media>
+                <div className = "backtogallery">
+                    <Button  color="info" tag={Link} to={`/Gallery`}>Back to Gallery</Button>
+                </div>
+                </>
+            )
+        }
     }
 }
 

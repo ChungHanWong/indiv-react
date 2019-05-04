@@ -6,38 +6,32 @@ import {  Button } from 'reactstrap';
 import Cardy from '../components/Card'
 import FilterSearch from '../components/FilterSearch'
 import GalleryButton from '../components/GalleryButtons'
+import Loader from '../components/Loader'
 
 class Gallery extends React.Component {
     state = {
         category : 'None',
         images : [],
         search : '',
+        loading : true,
     }
 
     componentDidMount()  {
         axios.get('https://aqueous-journey-66824.herokuapp.com/paintings/offer')
         .then(result => {
-            
+
             for (let i =0;i<result.data.length;i++){
-                let newName = result.data[i].name
-                let description = result.data[i].description
-                let category = result.data[i].category
-                let image = result.data[i].image
-                let id = result.data[i].id
-                let obj = {}
-                obj['name'] = newName
-                obj['category'] = category
-                obj['description'] = description
-                obj['image'] = image
-                obj['id'] = id
-                
-                let newnew= this.state.images
-                newnew.push(obj)
-            
+                const { name, description,category,image,id, } = result.data[i]
                 this.setState({
-                    images : newnew,
+                    images: [
+                        ...this.state.images,
+                        { name, description,category,image,id }
+                    ]
                 })
             }
+            
+            this.setState({loading : false})
+            
         })
         .catch(error => {    
             console.log('ERROR: ', error)
@@ -76,7 +70,14 @@ class Gallery extends React.Component {
                 return image.name.toLowerCase().indexOf(this.state.search) !== -1
             }
         )
-        if (this.state.category === "Photography") {
+        if(this.state.loading===true){
+            return(
+                <>
+                    <Loader/>
+                </>
+            )
+        }
+        else if (this.state.category === "Photography") {
         return (
             <>
             <GalleryButton handleClickModern={this.handleClickModern} handleClickAll={this.handleClickAll} handleClickRomantic={this.handleClickRomantic} handleClickDrawing={this.handleClickDrawing} handleClickPhotography={this.handleClickPhotography}/>

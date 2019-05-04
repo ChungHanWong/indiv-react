@@ -15,7 +15,7 @@ const PurchaseForm = ({ purchase }) => {
             console.log(response.data.message)
             
             
-            window.location.assign('https://ancient-springs-26000.herokuapp.com/Braintree')
+            window.location.assign('https://ancient-springs-26000.herokuapp.comBraintree')
         })
         .catch(error => {
         alert("error uploading")
