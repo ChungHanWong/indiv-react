@@ -25,11 +25,11 @@ class OtherProfiles extends React.Component {
                 // this.setState({artwork:response.data.artwork})
 
                 for (let i =0;i<response.data.artwork.length;i++){
-                    const { name, price,bidder_name,sold,image } = response.data.artwork[i]
+                    const { name, price,bidder_name,sold,image,id } = response.data.artwork[i]
                     this.setState({
                         artwork: [
                             ...this.state.artwork,
-                            { name, price, bidder_name,sold,image }
+                            { name, price, bidder_name,sold,image,id }
                         ]
                     })
                 }
